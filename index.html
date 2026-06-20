@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RGYM · Rákosi György — Personal Trainer Tirol</title>
+<meta name="description" content="Personal Training, Ernährung und tägliche Begleitung per App & Telegram. Body, Soul, Transformation — mit Rákosi György in Tirol." />
+<link rel="icon" type="image/webp" href="logo.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0B0F15;
+    --ink-2:#10151D;
+    --ink-3:#1B232F;
+    --line:#26303d;
+    --steel:#8FAAC6;
+    --steel-soft:#C9D2DB;
+    --bone:#E7ECF2;
+    --bone-muted:#94A2B2;
+    --chrome:linear-gradient(135deg,#eef2f6 0%,#c3ccd6 22%,#8b97a5 48%,#dfe5eb 70%,#9aa6b4 100%);
+    --maxw:1140px;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* ---------- living background ---------- */
+  #bg{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh}
+  #veil{
+    position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(125% 95% at 50% -5%,rgba(11,15,21,.10),rgba(11,15,21,.58) 55%,rgba(11,15,21,.86) 100%);
+  }
+  .fallbacks{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:none}
+  body.no-webgl{background:var(--ink)}
+  body.no-webgl .fallbacks{display:block}
+  .blob{position:absolute;border-radius:50%;filter:blur(85px);opacity:.55}
+  .b1{width:54vw;height:54vw;left:-12vw;top:-14vh;background:radial-gradient(circle,#2c3c50,transparent 70%);animation:float1 24s ease-in-out infinite alternate}
+  .b2{width:48vw;height:48vw;right:-14vw;top:8vh;background:radial-gradient(circle,#5e7188,transparent 70%);animation:float2 28s ease-in-out infinite alternate}
+  @keyframes float1{to{transform:translate(20vw,24vh) scale(1.18)}}
+  @keyframes float2{to{transform:translate(-18vw,16vh) scale(1.12)}}
+  /* keep all content above the living background */
+  header,section,.sec-head,footer{position:relative;z-index:2}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--steel);
+  }
+  .chrome-text{
+    background:var(--chrome);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+
+  /* ---------- top bar ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(11,15,21,.72);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s;
+  }
+  header.scrolled{border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.02em}
+  .brand img{width:30px;height:30px}
+  .bar-right{display:flex;align-items:center;gap:18px}
+  .langs{display:flex;gap:2px;font-family:var(--mono);font-size:12px}
+  .langs button{
+    background:none;border:0;color:var(--bone-muted);cursor:pointer;
+    padding:6px 8px;border-radius:6px;letter-spacing:.08em;transition:.2s;
+  }
+  .langs button:hover{color:var(--bone)}
+  .langs button.active{color:var(--ink);background:var(--steel-soft)}
+  .nav-cta{display:none}
+  @media(min-width:760px){.nav-cta{display:inline-flex}}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--sans);font-weight:600;font-size:15px;
+    padding:13px 22px;border-radius:10px;cursor:pointer;border:1px solid transparent;
+    transition:transform .15s,box-shadow .25s,background .2s;white-space:nowrap;
+  }
+  .btn-primary{
+    color:#10151D;background:var(--chrome);
+    box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 30px -12px rgba(143,170,198,.6);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 16px 40px -14px rgba(143,170,198,.8)}
+  .btn-ghost{color:var(--bone);border-color:var(--line);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--steel);color:#fff;transform:translateY(-2px)}
+  .btn-sm{padding:9px 16px;font-size:14px}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:96px 0 88px;text-align:center;overflow:hidden}
+  .hero-glow{
+    position:absolute;inset:-20% 0 auto 0;height:680px;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(620px 360px at 50% 8%,rgba(143,170,198,.18),transparent 70%),
+      radial-gradient(900px 500px at 50% -5%,rgba(40,55,73,.55),transparent 72%);
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .emblem{
+    width:148px;height:148px;margin:0 auto 26px;
+    filter:drop-shadow(0 18px 40px rgba(0,0,0,.55));
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(40px,7vw,76px);line-height:1.04;letter-spacing:-.01em;
+    margin:14px auto 0;max-width:14ch;
+  }
+  .hero .sub{
+    color:var(--bone-muted);font-size:clamp(16px,2.1vw,19px);
+    max-width:54ch;margin:22px auto 0;
+  }
+  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .brandline{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--steel);margin-top:14px;
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- pillars ---------- */
+  section{position:relative}
+  .pillars{padding:30px 0 20px}
+  .pillar-grid{display:grid;gap:18px;grid-template-columns:1fr}
+  @media(min-width:780px){.pillar-grid{grid-template-columns:repeat(3,1fr)}}
+  .card{
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    border:1px solid var(--line);border-radius:16px;padding:26px 24px;
+    transition:border-color .3s,transform .3s;
+  }
+  .card:hover{border-color:#3a4756;transform:translateY(-3px)}
+  .card .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--steel);text-transform:uppercase}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:23px;margin:14px 0 8px}
+  .card p{color:var(--bone-muted);font-size:15.5px}
+
+  /* ---------- section heading ---------- */
+  .sec-head{max-width:var(--maxw);margin:0 auto;padding:80px 24px 0}
+  .sec-head .eyebrow{display:block;margin-bottom:14px}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.4vw,46px);line-height:1.1;letter-spacing:-.01em;max-width:18ch}
+
+  /* ---------- about ---------- */
+  .about{padding:34px 0 10px}
+  .about-grid{display:grid;gap:30px;grid-template-columns:1fr}
+  @media(min-width:840px){.about-grid{grid-template-columns:1.05fr .95fr;align-items:center}}
+  .about-card{
+    position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    background:radial-gradient(120% 120% at 0% 0%,#1c2530,#0b0f15);
+    padding:34px;
+  }
+  .about-card .emblem-lg{width:96px;height:96px;margin-bottom:18px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))}
+  .about p{color:var(--bone-muted);font-size:16.5px;margin-top:14px}
+  .about p strong{color:var(--bone);font-weight:600}
+  .sig{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--steel-soft);margin-top:20px}
+
+  /* ---------- process + chat ---------- */
+  .process{padding:20px 0 0}
+  .proc-grid{display:grid;gap:36px;grid-template-columns:1fr;align-items:center}
+  @media(min-width:900px){.proc-grid{grid-template-columns:1fr 1fr;gap:54px}}
+  .steps{display:flex;flex-direction:column;gap:26px;margin-top:6px}
+  .step{display:flex;gap:18px}
+  .step .num{font-family:var(--mono);font-size:13px;color:var(--steel);padding-top:4px;min-width:30px}
+  .step h4{font-family:var(--serif);font-weight:600;font-size:20px;margin-bottom:4px}
+  .step p{color:var(--bone-muted);font-size:15px}
+
+  /* phone / chat mock */
+  .phone{
+    justify-self:center;width:100%;max-width:340px;
+    background:linear-gradient(180deg,#0e131a,#0a0e14);
+    border:1px solid #2b3744;border-radius:30px;padding:16px 14px 20px;
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset;
+  }
+  .phone-top{display:flex;align-items:center;gap:10px;padding:6px 6px 14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+  .phone-top img{width:34px;height:34px}
+  .phone-top .nm{font-weight:600;font-size:14px}
+  .phone-top .st{font-family:var(--mono);font-size:10px;color:#5fbf86;letter-spacing:.05em}
+  .msgs{display:flex;flex-direction:column;gap:10px;padding:4px}
+  .msg{max-width:82%;padding:10px 13px;border-radius:15px;font-size:13.5px;line-height:1.45}
+  .msg.out{align-self:flex-end;background:#2a3a4d;border-bottom-right-radius:5px}
+  .msg.in{align-self:flex-start;background:var(--ink-3);border:1px solid var(--line);border-bottom-left-radius:5px}
+  .msg .mac{color:var(--steel-soft);font-family:var(--mono);font-size:11.5px;display:block;margin-top:6px}
+  .msg.link{align-self:flex-start;background:linear-gradient(135deg,#243140,#1a232e);border:1px solid #3a4a5c;color:var(--steel-soft);font-weight:500;display:flex;align-items:center;gap:8px}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{margin:90px 0 0;padding:70px 0;position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 50% 0%,rgba(143,170,198,.14),transparent 70%);pointer-events:none}
+  .cta-inner{position:relative;text-align:center}
+  .cta-inner h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1.08}
+  .cta-inner p{color:var(--bone-muted);margin:16px auto 0;max-width:46ch;font-size:17px}
+  .cta-inner .hero-ctas{margin-top:30px}
+
+  /* ---------- footer ---------- */
+  footer{padding:54px 0 40px}
+  .foot{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+  @media(min-width:760px){.foot{flex-direction:row;justify-content:space-between;align-items:center}}
+  .foot .brand img{width:40px;height:40px}
+  .foot .meta{font-family:var(--mono);font-size:12px;color:var(--bone-muted);letter-spacing:.05em;line-height:1.9}
+  .foot a.contact{color:var(--steel-soft);border-bottom:1px solid transparent;transition:.2s}
+  .foot a.contact:hover{border-color:var(--steel-soft)}
+  .legal{margin-top:26px;font-size:12px;color:#5b6675;font-family:var(--mono)}
+  .built{margin-top:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:#5b6675}
+  .built .spark{color:var(--steel);margin-right:6px}
+  .built a{color:var(--steel-soft);border-bottom:1px solid transparent;transition:.2s}
+  .built a:hover{border-color:var(--steel-soft);color:#fff}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(26px) scale(.96)}to{opacity:1;transform:none}}
+  :focus-visible{outline:2px solid var(--steel);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="veil" aria-hidden="true"></div>
+<div class="fallbacks" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
+
+<header id="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top"><img src="logo.webp" alt="RGYM" /> RGYM</a>
+    <div class="bar-right">
+      <div class="langs" role="group" aria-label="Sprache / Language">
+        <button data-lang="de" class="active">DE</button>
+        <button data-lang="hu">HU</button>
+        <button data-lang="it">IT</button>
+      </div>
+      <a class="btn btn-primary btn-sm nav-cta" data-tg href="#" target="_blank" rel="noopener" data-i18n="nav_cta">Coaching starten</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <img class="emblem" src="logo.webp" alt="Rákosi György – RGYM" />
+    <p class="eyebrow" data-i18n="hero_eyebrow">Personal Trainer · Tirol</p>
+    <h1 data-i18n-html="hero_title">Deine <span class="chrome-text">Transformation</span> beginnt hier.</h1>
+    <p class="sub" data-i18n="hero_sub">Persönliches Training, Ernährung und tägliche Begleitung — von Rákosi György. Im Studio, remote, und direkt in deiner Tasche.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" data-tg href="#" target="_blank" rel="noopener" data-i18n="hero_cta1">Coaching starten</a>
+      <a class="btn btn-ghost" href="#prozess" data-i18n="hero_cta2">So funktioniert's</a>
+    </div>
+    <p class="brandline">Body · Soul · Transformation</p>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="wrap pillar-grid">
+    <div class="card reveal">
+      <span class="lbl" data-i18n="p1_lbl">01 — Training</span>
+      <h3 data-i18n="p1_h">1:1 Personal Training</h3>
+      <p data-i18n="p1_p">Echtes Coaching, auf dich abgestimmt — im Studio oder remote. Jede Einheit hat ein Ziel.</p>
+    </div>
+    <div class="card reveal">
+      <span class="lbl" data-i18n="p2_lbl">02 — Ernährung</span>
+      <h3 data-i18n="p2_h">Ernährung, die wirkt</h3>
+      <p data-i18n="p2_p">Klare Pläne statt Verbote. Du loggst per Chat, dein Plan passt sich deinem Alltag an.</p>
+    </div>
+    <div class="card reveal">
+      <span class="lbl" data-i18n="p3_lbl">03 — Begleitung</span>
+      <h3 data-i18n="p3_h">Immer dabei</h3>
+      <p data-i18n="p3_p">Bot und App begleiten dich täglich — in Deutsch, Ungarisch und Italienisch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="sec-head reveal">
+  <span class="eyebrow" data-i18n="about_eyebrow">Über György</span>
+  <h2 data-i18n="about_h">Coaching ist Kopfsache — und Konsequenz.</h2>
+</div>
+<section class="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <p data-i18n-html="about_p1">Ich bin <strong>Rákosi György</strong>, Personal Trainer aus Leidenschaft. Mein Ansatz bringt Körper, Kopf und Konsequenz zusammen — damit aus guten Vorsätzen echte Veränderung wird.</p>
+      <p data-i18n="about_p2">Kein Schema F, keine leeren Versprechen. Wir setzen ein Ziel, bauen einen Plan, der zu deinem Leben passt, und bleiben dran — Woche für Woche.</p>
+      <p class="sig" data-i18n="about_sig">Body, Soul, Transformation — kein Spruch, sondern wie ich arbeite.</p>
+    </div>
+    <div class="about-card reveal">
+      <img class="emblem-lg" src="logo.webp" alt="RGYM" />
+      <p data-i18n-html="about_card"><strong>Persönlich.</strong> Ein fester Ansprechpartner.<br/><strong>Datenbasiert.</strong> Dein Fortschritt wird sichtbar.<br/><strong>Mehrsprachig.</strong> DE · HU · IT.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS + CHAT -->
+<div class="sec-head reveal" id="prozess">
+  <span class="eyebrow" data-i18n="proc_eyebrow">So läuft dein Coaching</span>
+  <h2 data-i18n="proc_h">Dein Coach — direkt im Chat.</h2>
+</div>
+<section class="process">
+  <div class="wrap proc-grid">
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><div><h4 data-i18n="s1_h">Schreib dem Bot</h4><p data-i18n="s1_p">Erzähl, was du isst und trainierst — per Telegram, ganz nebenbei.</p></div></div>
+      <div class="step reveal"><div class="num">02</div><div><h4 data-i18n="s2_h">Bekomm deinen Plan</h4><p data-i18n="s2_p">Training und Ernährung, abgestimmt auf dein Ziel — in deiner Sprache.</p></div></div>
+      <div class="step reveal"><div class="num">03</div><div><h4 data-i18n="s3_h">Sieh deinen Fortschritt</h4><p data-i18n="s3_p">Alles läuft in deiner App zusammen: Pläne, Logs und deine Entwicklung.</p></div></div>
+    </div>
+
+    <div class="phone reveal" aria-hidden="true">
+      <div class="phone-top">
+        <img src="logo.webp" alt="" />
+        <div><div class="nm">RGYM Coach</div><div class="st" data-i18n="chat_status">● online</div></div>
+      </div>
+      <div class="msgs">
+        <div class="msg out" data-i18n="chat_m1">Frühstück: 3 Eier, 60g Haferflocken, Banane</div>
+        <div class="msg in" data-i18n-html="chat_m2">Stark! Sauber geloggt. <span class="mac">~480 kcal · 32g Eiweiß · noch ~1.320 kcal heute</span></div>
+        <div class="msg out" data-i18n="chat_m3">Plan für heute?</div>
+        <div class="msg in" data-i18n="chat_m4">Push-Day 💪 4 Übungen, 45 Min. Los geht's!</div>
+        <div class="msg link" data-i18n="chat_link">📲 Plan in der App öffnen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <h2 data-i18n="cta_h">Bereit für deine Transformation?</h2>
+    <p data-i18n="cta_p">Schreib mir auf Telegram oder per Mail. Wir finden den Plan, der zu dir passt.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" data-tg href="#" target="_blank" rel="noopener" data-i18n="cta_b1">Telegram öffnen</a>
+      <a class="btn btn-ghost" data-mail href="#" data-i18n="cta_b2">E-Mail schreiben</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#top"><img src="logo.webp" alt="RGYM" /> RGYM</a>
+    <div class="meta">
+      Rákosi György · <span data-i18n="foot_role">Personal Trainer</span> · Tirol<br/>
+      <a class="contact" data-tg href="#" target="_blank" rel="noopener">@gyorgy_rakosi_fitness_bot</a> ·
+      <a class="contact" data-app href="#" target="_blank" rel="noopener" data-i18n="foot_app">App</a><br/>
+      <a class="contact" data-mail href="#">hallo@rakosi-gym.at</a>
+    </div>
+  </div>
+  <div class="wrap legal" data-i18n="legal">© 2026 RGYM · Rákosi György — Body, Soul, Transformation</div>
+  <div class="wrap built" id="built"></div>
+</footer>
+
+<script>
+  // ---- Kontakt-Links zentral (hier anpassen) ----
+  const LINKS = {
+    telegram: "https://t.me/gyorgy_rakosi_fitness_bot",
+    app:      "https://coach-customer-app.vercel.app",
+    email:    "hallo@rakosi-gym.at"
+  };
+
+  // ---- Brand-Credit (HIER deinen Brand-Namen eintragen) ----
+  const BUILDER = { name: "Attila", url: "" };  // url leer lassen = kein Link
+  (function(){
+    var el=document.getElementById('built'); if(!el) return;
+    var inner='<span class="spark">▲</span>Powered by ';
+    inner += BUILDER.url ? '<a href="'+BUILDER.url+'" target="_blank" rel="noopener">'+BUILDER.name+'</a>' : BUILDER.name;
+    el.innerHTML=inner;
+  })();
+  document.querySelectorAll('[data-tg]').forEach(a=>a.href=LINKS.telegram);
+  document.querySelectorAll('[data-app]').forEach(a=>a.href=LINKS.app);
+  document.querySelectorAll('[data-mail]').forEach(a=>a.href='mailto:'+LINKS.email);
+
+  // ---- i18n ----
+  const I18N = {
+    de:{
+      title:"RGYM · Rákosi György — Personal Trainer Tirol",
+      nav_cta:"Coaching starten",
+      hero_eyebrow:"Personal Trainer · Tirol",
+      hero_title:'Deine <span class="chrome-text">Transformation</span> beginnt hier.',
+      hero_sub:"Persönliches Training, Ernährung und tägliche Begleitung — von Rákosi György. Im Studio, remote, und direkt in deiner Tasche.",
+      hero_cta1:"Coaching starten", hero_cta2:"So funktioniert's",
+      p1_lbl:"01 — Training", p1_h:"1:1 Personal Training", p1_p:"Echtes Coaching, auf dich abgestimmt — im Studio oder remote. Jede Einheit hat ein Ziel.",
+      p2_lbl:"02 — Ernährung", p2_h:"Ernährung, die wirkt", p2_p:"Klare Pläne statt Verbote. Du loggst per Chat, dein Plan passt sich deinem Alltag an.",
+      p3_lbl:"03 — Begleitung", p3_h:"Immer dabei", p3_p:"Bot und App begleiten dich täglich — in Deutsch, Ungarisch und Italienisch.",
+      about_eyebrow:"Über György", about_h:"Coaching ist Kopfsache — und Konsequenz.",
+      about_p1:'Ich bin <strong>Rákosi György</strong>, Personal Trainer aus Leidenschaft. Mein Ansatz bringt Körper, Kopf und Konsequenz zusammen — damit aus guten Vorsätzen echte Veränderung wird.',
+      about_p2:"Kein Schema F, keine leeren Versprechen. Wir setzen ein Ziel, bauen einen Plan, der zu deinem Leben passt, und bleiben dran — Woche für Woche.",
+      about_sig:"Body, Soul, Transformation — kein Spruch, sondern wie ich arbeite.",
+      about_card:'<strong>Persönlich.</strong> Ein fester Ansprechpartner.<br/><strong>Datenbasiert.</strong> Dein Fortschritt wird sichtbar.<br/><strong>Mehrsprachig.</strong> DE · HU · IT.',
+      proc_eyebrow:"So läuft dein Coaching", proc_h:"Dein Coach — direkt im Chat.",
+      s1_h:"Schreib dem Bot", s1_p:"Erzähl, was du isst und trainierst — per Telegram, ganz nebenbei.",
+      s2_h:"Bekomm deinen Plan", s2_p:"Training und Ernährung, abgestimmt auf dein Ziel — in deiner Sprache.",
+      s3_h:"Sieh deinen Fortschritt", s3_p:"Alles läuft in deiner App zusammen: Pläne, Logs und deine Entwicklung.",
+      chat_status:"● online",
+      chat_m1:"Frühstück: 3 Eier, 60g Haferflocken, Banane",
+      chat_m2:'Stark! Sauber geloggt. <span class="mac">~480 kcal · 32g Eiweiß · noch ~1.320 kcal heute</span>',
+      chat_m3:"Plan für heute?", chat_m4:"Push-Day 💪 4 Übungen, 45 Min. Los geht's!", chat_link:"📲 Plan in der App öffnen",
+      cta_h:"Bereit für deine Transformation?", cta_p:"Schreib mir auf Telegram oder per Mail. Wir finden den Plan, der zu dir passt.",
+      cta_b1:"Telegram öffnen", cta_b2:"E-Mail schreiben",
+      foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
+    },
+    hu:{
+      title:"RGYM · Rákosi György — Személyi edző, Tirol",
+      nav_cta:"Indítsd el",
+      hero_eyebrow:"Személyi edző · Tirol",
+      hero_title:'Itt kezdődik a <span class="chrome-text">változásod</span>.',
+      hero_sub:"Személyi edzés, táplálkozás és napi támogatás — Rákosi Györgytől. Teremben, online, és egyenesen a zsebedben.",
+      hero_cta1:"Indítsd el", hero_cta2:"Így működik",
+      p1_lbl:"01 — Edzés", p1_h:"1:1 személyi edzés", p1_p:"Valódi coaching, rád szabva — teremben vagy online. Minden edzésnek célja van.",
+      p2_lbl:"02 — Táplálkozás", p2_h:"Táplálkozás, ami működik", p2_p:"Világos tervek tiltások helyett. Chaten naplózol, a terved a mindennapjaidhoz igazodik.",
+      p3_lbl:"03 — Támogatás", p3_h:"Mindig veled", p3_p:"A bot és az app nap mint nap végigkísér — németül, magyarul és olaszul.",
+      about_eyebrow:"Györgyről", about_h:"A coaching fejben dől el — és kitartásban.",
+      about_p1:'<strong>Rákosi György</strong> vagyok, szenvedélyes személyi edző. A módszerem testet, fejet és kitartást köt össze — hogy a jó szándékból valódi változás legyen.',
+      about_p2:"Semmi sablon, semmi üres ígéret. Kitűzünk egy célt, építünk egy tervet, ami az életedhez illik, és kitartunk mellette — hétről hétre.",
+      about_sig:"Body, Soul, Transformation — nem szlogen, hanem ahogyan dolgozom.",
+      about_card:'<strong>Személyes.</strong> Egy állandó kapcsolattartó.<br/><strong>Adatalapú.</strong> A fejlődésed láthatóvá válik.<br/><strong>Többnyelvű.</strong> DE · HU · IT.',
+      proc_eyebrow:"Így zajlik a coaching", proc_h:"Az edződ — egyenesen a chatben.",
+      s1_h:"Írj a botnak", s1_p:"Mondd el, mit eszel és edzel — Telegramon, csak úgy mellékesen.",
+      s2_h:"Megkapod a terved", s2_p:"Edzés és táplálkozás a célodhoz igazítva — a saját nyelveden.",
+      s3_h:"Lásd a fejlődésed", s3_p:"Minden egy helyen, az appodban: tervek, naplók és a fejlődésed.",
+      chat_status:"● online",
+      chat_m1:"Reggeli: 3 tojás, 60g zabpehely, banán",
+      chat_m2:'Szuper! Elmentve. <span class="mac">~480 kcal · 32g fehérje · még ~1.320 kcal ma</span>',
+      chat_m3:"Mi a mai terv?", chat_m4:"Push nap 💪 4 gyakorlat, 45 perc. Hajrá!", chat_link:"📲 Terv megnyitása az appban",
+      cta_h:"Készen állsz a változásra?", cta_p:"Írj Telegramon vagy e-mailben. Megtaláljuk a hozzád illő tervet.",
+      cta_b1:"Telegram megnyitása", cta_b2:"Írj e-mailt",
+      foot_role:"Személyi edző", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
+    },
+    it:{
+      title:"RGYM · Rákosi György — Personal Trainer Tirolo",
+      nav_cta:"Inizia ora",
+      hero_eyebrow:"Personal Trainer · Tirolo",
+      hero_title:'La tua <span class="chrome-text">trasformazione</span> inizia qui.',
+      hero_sub:"Allenamento personale, nutrizione e supporto quotidiano — con Rákosi György. In studio, da remoto e direttamente in tasca.",
+      hero_cta1:"Inizia ora", hero_cta2:"Come funziona",
+      p1_lbl:"01 — Allenamento", p1_h:"Personal training 1:1", p1_p:"Coaching vero, su misura per te — in studio o da remoto. Ogni sessione ha un obiettivo.",
+      p2_lbl:"02 — Nutrizione", p2_h:"Nutrizione che funziona", p2_p:"Piani chiari, niente divieti. Registri in chat e il piano si adatta alla tua giornata.",
+      p3_lbl:"03 — Supporto", p3_h:"Sempre con te", p3_p:"Bot e app ti accompagnano ogni giorno — in tedesco, ungherese e italiano.",
+      about_eyebrow:"Chi è György", about_h:"Il coaching è testa — e costanza.",
+      about_p1:'Sono <strong>Rákosi György</strong>, personal trainer per passione. Il mio metodo unisce corpo, testa e costanza — perché dai buoni propositi nasca un vero cambiamento.',
+      about_p2:"Niente schemi preconfezionati, niente promesse vuote. Fissiamo un obiettivo, costruiamo un piano adatto alla tua vita e restiamo costanti — settimana dopo settimana.",
+      about_sig:"Body, Soul, Transformation — non uno slogan, ma il mio modo di lavorare.",
+      about_card:'<strong>Personale.</strong> Un referente fisso.<br/><strong>Basato sui dati.</strong> I tuoi progressi diventano visibili.<br/><strong>Multilingue.</strong> DE · HU · IT.',
+      proc_eyebrow:"Come funziona il coaching", proc_h:"Il tuo coach — direttamente in chat.",
+      s1_h:"Scrivi al bot", s1_p:"Racconta cosa mangi e come ti alleni — su Telegram, senza pensieri.",
+      s2_h:"Ricevi il tuo piano", s2_p:"Allenamento e nutrizione su misura per il tuo obiettivo — nella tua lingua.",
+      s3_h:"Vedi i tuoi progressi", s3_p:"Tutto in un posto, nella tua app: piani, log e i tuoi progressi.",
+      chat_status:"● online",
+      chat_m1:"Colazione: 3 uova, 60g avena, banana",
+      chat_m2:'Ottimo! Registrato. <span class="mac">~480 kcal · 32g proteine · ancora ~1.320 kcal oggi</span>',
+      chat_m3:"Piano per oggi?", chat_m4:"Push day 💪 4 esercizi, 45 min. Si parte!", chat_link:"📲 Apri il piano nell'app",
+      cta_h:"Pronto per la tua trasformazione?", cta_p:"Scrivimi su Telegram o via email. Troviamo il piano giusto per te.",
+      cta_b1:"Apri Telegram", cta_b2:"Scrivi un'email",
+      foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
+    }
+  };
+
+  function setLang(lang){
+    const dict = I18N[lang] || I18N.de;
+    document.documentElement.lang = lang;
+    document.title = dict.title;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k = el.getAttribute('data-i18n'); if(dict[k]!==undefined) el.textContent = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const k = el.getAttribute('data-i18n-html'); if(dict[k]!==undefined) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll('.langs button').forEach(b=>{
+      b.classList.toggle('active', b.dataset.lang===lang);
+    });
+    try{ localStorage.setItem('rgym_lang', lang); }catch(e){}
+  }
+  document.querySelectorAll('.langs button').forEach(b=>{
+    b.addEventListener('click',()=>setLang(b.dataset.lang));
+  });
+  // Startsprache: gespeichert -> Browser -> de
+  let start='de';
+  try{ const s=localStorage.getItem('rgym_lang'); if(s) start=s; }catch(e){}
+  if(start==='de'){ const n=(navigator.language||'').slice(0,2); if(['hu','it'].includes(n)) start=n; }
+  setLang(start);
+
+  // ---- scroll reveal ----
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ---- header border on scroll ----
+  const hdr=document.getElementById('top');
+  const onScroll=()=>hdr.classList.toggle('scrolled', window.scrollY>12);
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+</script>
+
+<script>
+(function(){
+  var canvas=document.getElementById('bg');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var gl=null;
+  try{ gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl'); }catch(e){}
+  if(!gl){ document.body.classList.add('no-webgl'); return; }
+  document.body.classList.add('webgl-ok');
+
+  var vert='attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0.0,1.0);}';
+  var frag=[
+  '#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
+  'uniform vec2 u_res;uniform float u_time;uniform vec2 u_mouse;',
+  'vec2 hash2(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return -1.0+2.0*fract(sin(p)*43758.5453123);}',
+  'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);',
+  ' return mix(mix(dot(hash2(i+vec2(0.0,0.0)),f-vec2(0.0,0.0)),dot(hash2(i+vec2(1.0,0.0)),f-vec2(1.0,0.0)),u.x),',
+  '            mix(dot(hash2(i+vec2(0.0,1.0)),f-vec2(0.0,1.0)),dot(hash2(i+vec2(1.0,1.0)),f-vec2(1.0,1.0)),u.x),u.y);}',
+  'float fbm(vec2 p){float v=0.0;float a=0.5;mat2 m=mat2(1.6,1.2,-1.2,1.6);',
+  ' for(int i=0;i<5;i++){v+=a*noise(p);p=m*p;a*=0.5;}return v;}',
+  'void main(){',
+  ' vec2 uv=gl_FragCoord.xy/u_res.xy;',
+  ' vec2 p=uv;p.x*=u_res.x/u_res.y;',
+  ' float t=u_time*0.05;',
+  ' vec2 q=vec2(fbm(p+vec2(0.0,t)),fbm(p+vec2(5.2,1.3-t)));',
+  ' vec2 r=vec2(fbm(p+1.6*q+vec2(1.7,9.2)+0.15*t),fbm(p+1.6*q+vec2(8.3,2.8)-0.12*t));',
+  ' float h=fbm(p+2.0*r);',
+  ' float e=0.0028;',
+  ' float hx=fbm(p+2.0*r+vec2(e,0.0))-h;',
+  ' float hy=fbm(p+2.0*r+vec2(0.0,e))-h;',
+  ' vec3 n=normalize(vec3(-hx,-hy,e*7.0));',
+  ' vec2 mp=u_mouse;mp.x*=u_res.x/u_res.y;',
+  ' vec3 L1=normalize(vec3(cos(t*1.1),sin(t*0.8),0.85));',
+  ' vec3 L2=normalize(vec3((mp-p)*1.4,0.55));',
+  ' float spec1=pow(max(dot(n,L1),0.0),6.0);',
+  ' float spec2=pow(max(dot(n,L2),0.0),14.0);',
+  ' float diff=0.5+0.5*dot(n,normalize(vec3(0.3,0.4,1.0)));',
+  ' vec3 dark=vec3(0.043,0.059,0.082);',
+  ' vec3 steel=vec3(0.56,0.667,0.776);',
+  ' vec3 chrome=vec3(0.93,0.96,0.99);',
+  ' vec3 col=mix(dark,steel,smoothstep(0.15,0.95,diff)*0.55);',
+  ' col+=steel*spec1*0.45;',
+  ' col+=chrome*spec2*1.0;',
+  ' col+=chrome*pow(h*0.5+0.5,3.0)*0.05;',
+  ' float vig=smoothstep(1.25,0.25,length(uv-vec2(0.5,0.5)));',
+  ' col*=mix(0.55,1.0,vig);',
+  ' gl_FragColor=vec4(col,1.0);',
+  '}'].join('\n');
+
+  function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){return null;}return s;}
+  var vs=sh(gl.VERTEX_SHADER,vert),fs=sh(gl.FRAGMENT_SHADER,frag);
+  if(!vs||!fs){document.body.classList.remove('webgl-ok');document.body.classList.add('no-webgl');return;}
+  var prog=gl.createProgram();gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){document.body.classList.add('no-webgl');return;}
+  gl.useProgram(prog);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(prog,'a_pos');gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var uRes=gl.getUniformLocation(prog,'u_res'),uTime=gl.getUniformLocation(prog,'u_time'),uMouse=gl.getUniformLocation(prog,'u_mouse');
+
+  var dpr=Math.min(window.devicePixelRatio||1,1.5);
+  function resize(){
+    var w=canvas.clientWidth=window.innerWidth, h=canvas.clientHeight=window.innerHeight;
+    canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);
+    gl.viewport(0,0,canvas.width,canvas.height);
+    gl.uniform2f(uRes,canvas.width,canvas.height);
+  }
+  window.addEventListener('resize',resize);resize();
+
+  // mouse / touch -> target highlight (GL y is flipped)
+  var mx=0.5,my=0.55,tx=0.5,ty=0.55;
+  function setTarget(cx,cy){tx=cx/window.innerWidth;ty=1.0-cy/window.innerHeight;}
+  window.addEventListener('mousemove',function(e){setTarget(e.clientX,e.clientY);});
+  window.addEventListener('touchmove',function(e){if(e.touches[0])setTarget(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+
+  var start=performance.now(),hidden=false;
+  document.addEventListener('visibilitychange',function(){hidden=document.hidden;if(!hidden&&!reduce)requestAnimationFrame(loop);});
+
+  function draw(timeSec){
+    // sanfte Auto-Drift, falls kein Cursor (Mobile/Idle)
+    var aimx=tx, aimy=ty;
+    if(reduce){mx=0.5;my=0.6;}
+    else{mx+=(aimx-mx)*0.045;my+=(aimy-my)*0.045;}
+    gl.uniform1f(uTime,timeSec);
+    gl.uniform2f(uMouse,mx,my);
+    gl.drawArrays(gl.TRIANGLES,0,3);
+  }
+  function loop(){
+    if(hidden)return;
+    var tsec=(performance.now()-start)/1000;
+    // wenn kein Input: Highlight langsam im Kreis wandern lassen (lebt auch ohne Maus)
+    if(performance.now()-lastInput>3500){tx=0.5+0.32*Math.cos(tsec*0.25);ty=0.55+0.22*Math.sin(tsec*0.21);}
+    draw(tsec);
+    requestAnimationFrame(loop);
+  }
+  var lastInput=performance.now()-9999;
+  window.addEventListener('mousemove',function(){lastInput=performance.now();});
+  window.addEventListener('touchstart',function(){lastInput=performance.now();},{passive:true});
+
+  if(reduce){ draw(0.0); }   // ein ruhiges Standbild
+  else{ requestAnimationFrame(loop); }
+})();
+</script>
+</body>
+</html>
