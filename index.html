@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RGYM · Rákosi György — Personal Trainer Meran</title>
 <meta name="description" content="Personal Training & Ernährungscoaching in Meran, Südtirol — mit täglicher Begleitung per App und Telegram. Body, Soul, Transformation mit Rákosi György." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="RGYM · Rákosi György — Personal Trainer Meran" />
+<meta property="og:description" content="Personal Training & Ernährung mit täglicher Begleitung per App & Telegram. Body, Soul, Transformation — in Meran, Südtirol." />
+<meta property="og:image" content="https://rgym-landing-rho.vercel.app/og.png" />
+<meta property="og:url" content="https://rgym-landing-rho.vercel.app/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://rgym-landing-rho.vercel.app/og.png" />
 <link rel="icon" type="image/webp" href="logo.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -229,6 +236,33 @@
   .built a{color:var(--steel-soft);border-bottom:1px solid transparent;transition:.2s}
   .built a:hover{border-color:var(--steel-soft);color:#fff}
 
+  /* header condenses on scroll */
+  .bar{transition:height .3s ease}
+  .brand img{transition:width .3s ease,height .3s ease}
+  header.scrolled .bar{height:54px}
+  header.scrolled .brand img{width:26px;height:26px}
+
+  /* staggered reveals */
+  .pillar-grid .reveal:nth-child(2),.steps .reveal:nth-child(2){transition-delay:.09s}
+  .pillar-grid .reveal:nth-child(3),.steps .reveal:nth-child(3){transition-delay:.18s}
+
+  /* hero scroll cue */
+  .scrollcue{margin:42px auto 0;width:1px;height:48px;background:linear-gradient(var(--steel),transparent);position:relative;opacity:.55}
+  .scrollcue span{position:absolute;top:0;left:50%;width:4px;height:4px;border-radius:50%;background:var(--steel-soft);transform:translateX(-50%);box-shadow:0 0 8px var(--steel);animation:scrolldot 2.4s ease-in-out infinite}
+  @keyframes scrolldot{0%{top:0;opacity:0}25%{opacity:1}100%{top:44px;opacity:0}}
+
+  /* FAQ */
+  .faq{padding:22px 0 0}
+  .faq-list{max-width:840px;margin:0 auto}
+  .faq details{border-top:1px solid var(--line)}
+  .faq details:last-child{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 4px;font-family:var(--serif);font-size:clamp(18px,2.2vw,21px);color:var(--bone);transition:color .2s}
+  .faq summary:hover{color:#fff}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .ic{font-family:var(--mono);font-size:20px;color:var(--steel);transition:transform .3s ease;flex:none}
+  .faq details[open] summary .ic{transform:rotate(45deg)}
+  .faq .ans{color:var(--bone-muted);font-size:16px;line-height:1.7;padding:0 4px 24px;max-width:72ch}
+
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important}
     .reveal{opacity:1;transform:none;transition:none}
@@ -272,6 +306,7 @@
       <a class="btn btn-ghost" href="#prozess" data-i18n="hero_cta2">So funktioniert's</a>
     </div>
     <p class="brandline">Body · Soul · Transformation</p>
+    <div class="scrollcue" aria-hidden="true"><span></span></div>
   </div>
 </section>
 
@@ -341,6 +376,36 @@
         <div class="msg link" data-i18n="chat_link">📲 Plan in der App öffnen</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="sec-head reveal">
+  <span class="eyebrow" data-i18n="faq_eyebrow">Häufige Fragen</span>
+  <h2 data-i18n="faq_h">Gut zu wissen.</h2>
+</div>
+<section class="faq">
+  <div class="wrap faq-list reveal">
+    <details>
+      <summary><span data-i18n="faq_q1">Für wen ist das Coaching?</span><span class="ic">+</span></summary>
+      <div class="ans" data-i18n="faq_a1">Für alle, die ernsthaft etwas verändern wollen — ob Einstieg, Wiedereinstieg oder schon Erfahrung. Training und Ernährung werden auf dein Level und dein Ziel abgestimmt.</div>
+    </details>
+    <details>
+      <summary><span data-i18n="faq_q2">Vor Ort in Meran oder online?</span><span class="ic">+</span></summary>
+      <div class="ans" data-i18n="faq_a2">Beides. Du kannst persönlich in Meran trainieren oder komplett online begleitet werden — Pläne, Check-ins und Anpassungen laufen ohnehin über App und Telegram.</div>
+    </details>
+    <details>
+      <summary><span data-i18n="faq_q3">Wie läuft der Start ab?</span><span class="ic">+</span></summary>
+      <div class="ans" data-i18n="faq_a3">Du meldest dich über Telegram, wir klären dein Ziel und deinen Alltag, dann bekommst du deinen ersten Plan. Ab da begleiten wir dich Woche für Woche.</div>
+    </details>
+    <details>
+      <summary><span data-i18n="faq_q4">Brauche ich Vorerfahrung oder ein Studio?</span><span class="ic">+</span></summary>
+      <div class="ans" data-i18n="faq_a4">Nein. Wir starten da, wo du stehst — Übungen für zuhause oder ein normales Fitnessstudio funktionieren beide.</div>
+    </details>
+    <details>
+      <summary><span data-i18n="faq_q5">In welchen Sprachen läuft das Coaching?</span><span class="ic">+</span></summary>
+      <div class="ans" data-i18n="faq_a5">Deutsch, Italienisch und Ungarisch — Plan, App und Bot passen sich deiner Sprache an.</div>
+    </details>
   </div>
 </section>
 
@@ -418,6 +483,12 @@
       chat_m3:"Plan für heute?", chat_m4:"Push-Day 💪 4 Übungen, 45 Min. Los geht's!", chat_link:"📲 Plan in der App öffnen",
       cta_h:"Bereit für deine Transformation?", cta_p:"Schreib mir auf Telegram oder per Mail. Wir finden den Plan, der zu dir passt.",
       cta_b1:"Telegram öffnen", cta_b2:"E-Mail schreiben",
+      faq_eyebrow:"Häufige Fragen", faq_h:"Gut zu wissen.",
+      faq_q1:"Für wen ist das Coaching?", faq_a1:"Für alle, die ernsthaft etwas verändern wollen — ob Einstieg, Wiedereinstieg oder schon Erfahrung. Training und Ernährung werden auf dein Level und dein Ziel abgestimmt.",
+      faq_q2:"Vor Ort in Meran oder online?", faq_a2:"Beides. Du kannst persönlich in Meran trainieren oder komplett online begleitet werden — Pläne, Check-ins und Anpassungen laufen ohnehin über App und Telegram.",
+      faq_q3:"Wie läuft der Start ab?", faq_a3:"Du meldest dich über Telegram, wir klären dein Ziel und deinen Alltag, dann bekommst du deinen ersten Plan. Ab da begleiten wir dich Woche für Woche.",
+      faq_q4:"Brauche ich Vorerfahrung oder ein Studio?", faq_a4:"Nein. Wir starten da, wo du stehst — Übungen für zuhause oder ein normales Fitnessstudio funktionieren beide.",
+      faq_q5:"In welchen Sprachen läuft das Coaching?", faq_a5:"Deutsch, Italienisch und Ungarisch — Plan, App und Bot passen sich deiner Sprache an.",
       foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     },
     hu:{
@@ -445,6 +516,12 @@
       chat_m3:"Mi a mai terv?", chat_m4:"Push nap 💪 4 gyakorlat, 45 perc. Hajrá!", chat_link:"📲 Terv megnyitása az appban",
       cta_h:"Készen állsz a változásra?", cta_p:"Írj Telegramon vagy e-mailben. Megtaláljuk a hozzád illő tervet.",
       cta_b1:"Telegram megnyitása", cta_b2:"Írj e-mailt",
+      faq_eyebrow:"Gyakori kérdések", faq_h:"Jó tudni.",
+      faq_q1:"Kinek szól a coaching?", faq_a1:"Mindenkinek, aki komolyan változtatni akar — legyen kezdő, visszatérő vagy már tapasztalt. Az edzést és a táplálkozást a szintedhez és a célodhoz igazítjuk.",
+      faq_q2:"Helyben Meranban vagy online?", faq_a2:"Mindkettő. Edzhetsz személyesen Meranban, vagy teljesen online is kísérünk — a tervek, a check-inek és a módosítások amúgy is az appon és Telegramon mennek.",
+      faq_q3:"Hogyan indul az egész?", faq_a3:"Írsz Telegramon, tisztázzuk a célodat és a napirendedet, majd megkapod az első terved. Onnantól hétről hétre kísérünk.",
+      faq_q4:"Kell előzetes tapasztalat vagy konditerem?", faq_a4:"Nem. Onnan indulunk, ahol tartasz — az otthoni gyakorlatok és egy sima konditerem is működik.",
+      faq_q5:"Milyen nyelveken zajlik?", faq_a5:"Németül, olaszul és magyarul — a terv, az app és a bot a nyelvedhez igazodik.",
       foot_role:"Személyi edző", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     },
     it:{
@@ -472,6 +549,12 @@
       chat_m3:"Piano per oggi?", chat_m4:"Push day 💪 4 esercizi, 45 min. Si parte!", chat_link:"📲 Apri il piano nell'app",
       cta_h:"Pronto per la tua trasformazione?", cta_p:"Scrivimi su Telegram o via email. Troviamo il piano giusto per te.",
       cta_b1:"Apri Telegram", cta_b2:"Scrivi un'email",
+      faq_eyebrow:"Domande frequenti", faq_h:"Buono a sapersi.",
+      faq_q1:"A chi è rivolto il coaching?", faq_a1:"A chiunque voglia cambiare sul serio — che tu sia all'inizio, di ritorno o già esperto. Allenamento e nutrizione vengono adattati al tuo livello e al tuo obiettivo.",
+      faq_q2:"In presenza a Merano o online?", faq_a2:"Entrambi. Puoi allenarti di persona a Merano o essere seguito completamente online — piani, check-in e adattamenti passano comunque da app e Telegram.",
+      faq_q3:"Come si inizia?", faq_a3:"Scrivi su Telegram, definiamo il tuo obiettivo e le tue giornate, poi ricevi il primo piano. Da lì ti seguiamo settimana dopo settimana.",
+      faq_q4:"Servono esperienza o una palestra?", faq_a4:"No. Partiamo da dove sei — funzionano sia gli esercizi a casa sia una normale palestra.",
+      faq_q5:"In che lingue si svolge?", faq_a5:"Tedesco, italiano e ungherese — piano, app e bot si adattano alla tua lingua.",
       foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     }
   };
