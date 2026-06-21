@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RGYM · Rákosi György — Personal Trainer Tirol</title>
-<meta name="description" content="Personal Training & Ernährungscoaching in Tirol — mit täglicher Begleitung per App und Telegram. Body, Soul, Transformation mit Rákosi György." />
+<title>RGYM · Rákosi György — Personal Trainer Meran</title>
+<meta name="description" content="Personal Training & Ernährungscoaching in Meran, Südtirol — mit täglicher Begleitung per App und Telegram. Body, Soul, Transformation mit Rákosi György." />
 <link rel="icon" type="image/webp" href="logo.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,6 +33,8 @@
     font-family:var(--sans);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-optical-sizing:auto;
     overflow-x:hidden;
   }
 
@@ -41,7 +43,11 @@
   #veil{
     position:fixed;inset:0;z-index:1;pointer-events:none;
     background:
-      radial-gradient(125% 95% at 50% -5%,rgba(11,15,21,.10),rgba(11,15,21,.58) 55%,rgba(11,15,21,.86) 100%);
+      radial-gradient(120% 90% at 50% -8%,rgba(11,15,21,.25),rgba(11,15,21,.72) 52%,rgba(11,15,21,.92) 100%);
+  }
+  #grain{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .fallbacks{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:none}
   body.no-webgl{background:var(--ink)}
@@ -99,9 +105,9 @@
   }
   .btn-primary{
     color:#10151D;background:var(--chrome);
-    box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 30px -12px rgba(143,170,198,.6);
+    box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 6px 22px -12px rgba(143,170,198,.45);
   }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 16px 40px -14px rgba(143,170,198,.8)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 12px 30px -14px rgba(143,170,198,.6)}
   .btn-ghost{color:var(--bone);border-color:var(--line);background:rgba(255,255,255,.02)}
   .btn-ghost:hover{border-color:var(--steel);color:#fff;transform:translateY(-2px)}
   .btn-sm{padding:9px 16px;font-size:14px}
@@ -155,7 +161,7 @@
   .card p{color:var(--bone-muted);font-size:15.5px}
 
   /* ---------- section heading ---------- */
-  .sec-head{max-width:var(--maxw);margin:0 auto;padding:80px 24px 0}
+  .sec-head{max-width:var(--maxw);margin:48px auto 0;padding:60px 24px 0;border-top:1px solid var(--line)}
   .sec-head .eyebrow{display:block;margin-bottom:14px}
   .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.4vw,46px);line-height:1.1;letter-spacing:-.01em;max-width:18ch}
 
@@ -236,6 +242,7 @@
 
 <canvas id="bg" aria-hidden="true"></canvas>
 <div id="veil" aria-hidden="true"></div>
+<div id="grain" aria-hidden="true"></div>
 <div class="fallbacks" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
 
 <header id="top">
@@ -257,7 +264,7 @@
   <div class="hero-glow"></div>
   <div class="wrap">
     <img class="emblem" src="logo.webp" alt="Rákosi György – RGYM" />
-    <p class="eyebrow" data-i18n="hero_eyebrow">Personal Trainer · Tirol</p>
+    <p class="eyebrow" data-i18n="hero_eyebrow">Personal Trainer · Meran</p>
     <h1 data-i18n-html="hero_title">Deine <span class="chrome-text">Transformation</span> beginnt hier.</h1>
     <p class="sub" data-i18n="hero_sub">Training und Ernährung, die zu deinem Leben passen — mit einem Coach, der jeden Tag dranbleibt. Vor Ort, online und direkt auf deinem Handy.</p>
     <div class="hero-ctas">
@@ -354,7 +361,7 @@
   <div class="wrap foot">
     <a class="brand" href="#top"><img src="logo.webp" alt="RGYM" /> RGYM</a>
     <div class="meta">
-      Rákosi György · <span data-i18n="foot_role">Personal Trainer</span> · Tirol<br/>
+      Rákosi György · <span data-i18n="foot_role">Personal Trainer</span> · Meran · Südtirol<br/>
       <a class="contact" data-tg href="#" target="_blank" rel="noopener">@gyorgy_rakosi_fitness_bot</a> ·
       <a class="contact" data-app href="#" target="_blank" rel="noopener" data-i18n="foot_app">App</a><br/>
       <a class="contact" data-mail href="#">hallo@rakosi-gym.at</a>
@@ -387,9 +394,9 @@
   // ---- i18n ----
   const I18N = {
     de:{
-      title:"RGYM · Rákosi György — Personal Trainer Tirol",
+      title:"RGYM · Rákosi György — Personal Trainer Meran",
       nav_cta:"Coaching starten",
-      hero_eyebrow:"Personal Trainer · Tirol",
+      hero_eyebrow:"Personal Trainer · Meran",
       hero_title:'Deine <span class="chrome-text">Transformation</span> beginnt hier.',
       hero_sub:"Training und Ernährung, die zu deinem Leben passen — mit einem Coach, der jeden Tag dranbleibt. Vor Ort, online und direkt auf deinem Handy.",
       hero_cta1:"Coaching starten", hero_cta2:"So funktioniert's",
@@ -414,9 +421,9 @@
       foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     },
     hu:{
-      title:"RGYM · Rákosi György — Személyi edző, Tirol",
+      title:"RGYM · Rákosi György — Személyi edző, Meran",
       nav_cta:"Indítsd el",
-      hero_eyebrow:"Személyi edző · Tirol",
+      hero_eyebrow:"Személyi edző · Meran",
       hero_title:'Itt kezdődik a <span class="chrome-text">változásod</span>.',
       hero_sub:"Edzés és táplálkozás, ami az életedhez igazodik — egy edzővel, aki minden nap melletted van. Teremben, online és egyenesen a telefonodon.",
       hero_cta1:"Indítsd el", hero_cta2:"Így működik",
@@ -441,9 +448,9 @@
       foot_role:"Személyi edző", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     },
     it:{
-      title:"RGYM · Rákosi György — Personal Trainer Tirolo",
+      title:"RGYM · Rákosi György — Personal Trainer Merano",
       nav_cta:"Inizia ora",
-      hero_eyebrow:"Personal Trainer · Tirolo",
+      hero_eyebrow:"Personal Trainer · Merano",
       hero_title:'La tua <span class="chrome-text">trasformazione</span> inizia qui.',
       hero_sub:"Allenamento e nutrizione su misura per la tua vita — con un coach che c'è ogni giorno. In studio, online e direttamente sul tuo telefono.",
       hero_cta1:"Inizia ora", hero_cta2:"Come funziona",
@@ -527,7 +534,7 @@
   'void main(){',
   ' vec2 uv=gl_FragCoord.xy/u_res.xy;',
   ' vec2 p=uv;p.x*=u_res.x/u_res.y;',
-  ' float t=u_time*0.05;',
+  ' float t=u_time*0.03;',
   ' vec2 q=vec2(fbm(p+vec2(0.0,t)),fbm(p+vec2(5.2,1.3-t)));',
   ' vec2 r=vec2(fbm(p+1.6*q+vec2(1.7,9.2)+0.15*t),fbm(p+1.6*q+vec2(8.3,2.8)-0.12*t));',
   ' float h=fbm(p+2.0*r);',
@@ -544,13 +551,13 @@
   ' vec3 dark=vec3(0.043,0.059,0.082);',
   ' vec3 steel=vec3(0.56,0.667,0.776);',
   ' vec3 chrome=vec3(0.93,0.96,0.99);',
-  ' vec3 col=mix(dark,steel,smoothstep(0.15,0.95,diff)*0.55);',
-  ' col+=steel*spec1*0.45;',
-  ' col+=chrome*spec2*1.0;',
-  ' col+=chrome*pow(h*0.5+0.5,3.0)*0.05;',
-  ' float vig=smoothstep(1.25,0.25,length(uv-vec2(0.5,0.5)));',
-  ' col*=mix(0.55,1.0,vig);',
-  ' gl_FragColor=vec4(col,1.0);',
+  ' vec3 col=mix(dark,steel,smoothstep(0.15,0.95,diff)*0.30);',
+  ' col+=steel*spec1*0.20;',
+  ' col+=chrome*spec2*0.45;',
+  ' col+=chrome*pow(h*0.5+0.5,3.0)*0.025;',
+  ' float vig=smoothstep(1.05,0.12,length(uv-vec2(0.5,0.46)));',
+  ' col*=mix(0.32,0.92,vig);',
+  ' gl_FragColor=vec4(col*0.88,1.0);',
   '}'].join('\n');
 
   function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
@@ -588,7 +595,7 @@
     // sanfte Auto-Drift, falls kein Cursor (Mobile/Idle)
     var aimx=tx, aimy=ty;
     if(reduce){mx=0.5;my=0.6;}
-    else{mx+=(aimx-mx)*0.045;my+=(aimy-my)*0.045;}
+    else{mx+=(aimx-mx)*0.03;my+=(aimy-my)*0.03;}
     gl.uniform1f(uTime,timeSec);
     gl.uniform2f(uMouse,mx,my);
     gl.drawArrays(gl.TRIANGLES,0,3);
