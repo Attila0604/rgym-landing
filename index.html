@@ -4,30 +4,35 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RGYM · Rákosi György — Personal Trainer Meran</title>
-<meta name="description" content="Personal Training & Ernährungscoaching in Meran, Südtirol — mit täglicher Begleitung per App und Telegram. Body, Soul, Transformation mit Rákosi György." />
+<meta name="description" content="Personal Training & Ernährungscoaching in Meran, Südtirol — mit persönlicher Betreuung, App und Telegram. Body, Soul, Transformation mit Rákosi György." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="RGYM · Rákosi György — Personal Trainer Meran" />
-<meta property="og:description" content="Personal Training & Ernährung mit täglicher Begleitung per App & Telegram. Body, Soul, Transformation — in Meran, Südtirol." />
+<meta property="og:description" content="Training, Ernährung und tägliche Begleitung über App & Telegram. Persönlich, mehrsprachig und alltagstauglich." />
 <meta property="og:image" content="https://rgym-landing-rho.vercel.app/og.png" />
 <meta property="og:url" content="https://rgym-landing-rho.vercel.app/" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://rgym-landing-rho.vercel.app/og.png" />
 <link rel="icon" type="image/webp" href="logo.webp" />
+<link rel="preload" as="image" href="gyorgy-portrait.webp" type="image/webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --ink:#0B0F15;
-    --ink-2:#10151D;
-    --ink-3:#1B232F;
-    --line:#26303d;
+    --ink:#070A0F;
+    --ink-2:#0B0F15;
+    --ink-3:#111822;
+    --line:rgba(201,210,219,.15);
+    --line-2:rgba(143,170,198,.28);
     --steel:#8FAAC6;
-    --steel-soft:#C9D2DB;
-    --bone:#E7ECF2;
-    --bone-muted:#94A2B2;
-    --chrome:linear-gradient(135deg,#eef2f6 0%,#c3ccd6 22%,#8b97a5 48%,#dfe5eb 70%,#9aa6b4 100%);
-    --maxw:1140px;
+    --steel-soft:#DDE7F1;
+    --bone:#F0F4F8;
+    --bone-muted:#9CAABD;
+    --green:#60F28E;
+    --blue:#46B8FF;
+    --chrome:linear-gradient(135deg,#ffffff 0%,#c7d2dc 21%,#7e8c9b 46%,#f4f7fb 69%,#98a6b4 100%);
+    --chrome-soft:linear-gradient(135deg,rgba(255,255,255,.98),rgba(143,170,198,.72),rgba(255,255,255,.92));
+    --maxw:1180px;
     --serif:'Fraunces',Georgia,serif;
     --sans:'Inter',system-ui,sans-serif;
     --mono:'JetBrains Mono',ui-monospace,monospace;
@@ -35,266 +40,224 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
+    min-height:100vh;
     background:var(--ink);
     color:var(--bone);
     font-family:var(--sans);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
-    font-optical-sizing:auto;
     overflow-x:hidden;
   }
-
-  /* ---------- living background ---------- */
-  #bg{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh}
-  #veil{
-    position:fixed;inset:0;z-index:1;pointer-events:none;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
     background:
-      radial-gradient(120% 90% at 50% -8%,rgba(11,15,21,.25),rgba(11,15,21,.72) 52%,rgba(11,15,21,.92) 100%);
+      radial-gradient(820px 480px at 72% 8%,rgba(70,184,255,.18),transparent 68%),
+      radial-gradient(760px 500px at 12% 14%,rgba(96,242,142,.13),transparent 64%),
+      radial-gradient(900px 620px at 50% 92%,rgba(143,170,198,.12),transparent 70%),
+      linear-gradient(180deg,#090D13 0%,#06090D 72%,#030507 100%);
   }
-  #grain{
-    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    opacity:.055;
+    mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .fallbacks{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:none}
-  body.no-webgl{background:var(--ink)}
-  body.no-webgl .fallbacks{display:block}
-  .blob{position:absolute;border-radius:50%;filter:blur(85px);opacity:.55}
-  .b1{width:54vw;height:54vw;left:-12vw;top:-14vh;background:radial-gradient(circle,#2c3c50,transparent 70%);animation:float1 24s ease-in-out infinite alternate}
-  .b2{width:48vw;height:48vw;right:-14vw;top:8vh;background:radial-gradient(circle,#5e7188,transparent 70%);animation:float2 28s ease-in-out infinite alternate}
-  @keyframes float1{to{transform:translate(20vw,24vh) scale(1.18)}}
-  @keyframes float2{to{transform:translate(-18vw,16vh) scale(1.12)}}
-  body.no-webgl #bg{display:none}
-  body.no-webgl{
-    background:
-      radial-gradient(70% 55% at 22% 8%,rgba(44,60,80,.55),transparent 60%),
-      radial-gradient(60% 50% at 88% 12%,rgba(40,55,73,.45),transparent 60%),
-      var(--ink);
-  }
-  /* keep all content above the living background */
-  header,section,.sec-head,footer{position:relative;z-index:2}
+  .aurora{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .orb{position:absolute;border-radius:999px;filter:blur(70px);opacity:.45;animation:float 18s ease-in-out infinite alternate}
+  .orb.o1{width:420px;height:420px;left:-140px;top:120px;background:rgba(96,242,142,.24)}
+  .orb.o2{width:520px;height:520px;right:-190px;top:40px;background:rgba(70,184,255,.20);animation-duration:22s}
+  .orb.o3{width:380px;height:380px;right:20%;bottom:-170px;background:rgba(143,170,198,.16);animation-duration:26s}
+  @keyframes float{to{transform:translate3d(80px,60px,0) scale(1.14)}}
+
   a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .chrome-text{background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);font-weight:700}
 
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--steel);
-  }
-  .chrome-text{
-    background:var(--chrome);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
-  }
-
-  /* ---------- top bar ---------- */
   header{
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:blur(12px);
-    background:rgba(11,15,21,.72);
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    background:rgba(7,10,15,.70);
     border-bottom:1px solid transparent;
-    transition:border-color .3s;
+    transition:border-color .25s,background .25s;
   }
-  header.scrolled{border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:.02em}
-  .brand img{width:30px;height:30px}
-  .bar-right{display:flex;align-items:center;gap:18px}
-  .langs{display:flex;gap:2px;font-family:var(--mono);font-size:12px}
-  .langs button{
-    background:none;border:0;color:var(--bone-muted);cursor:pointer;
-    padding:6px 8px;border-radius:6px;letter-spacing:.08em;transition:.2s;
-  }
+  header.scrolled{border-bottom-color:var(--line);background:rgba(7,10,15,.88)}
+  .bar{height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px;transition:height .25s}
+  header.scrolled .bar{height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.02em}
+  .brand img{width:32px;height:32px;filter:drop-shadow(0 8px 20px rgba(70,184,255,.18));transition:.25s}
+  header.scrolled .brand img{width:27px;height:27px}
+  .bar-right{display:flex;align-items:center;gap:16px}
+  .langs{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035)}
+  .langs button{border:0;background:none;color:var(--bone-muted);cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.08em;padding:7px 10px;border-radius:999px;transition:.18s}
   .langs button:hover{color:var(--bone)}
-  .langs button.active{color:var(--ink);background:var(--steel-soft)}
+  .langs button.active{background:var(--steel-soft);color:#081019}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:13px;border:1px solid transparent;font-weight:800;font-size:15px;padding:14px 22px;line-height:1;cursor:pointer;white-space:nowrap;transition:transform .18s,box-shadow .25s,border-color .2s,background .2s;color:inherit}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{color:#09111A;background:var(--chrome-soft);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 20px 56px -24px rgba(143,170,198,.95)}
+  .btn-primary:hover{box-shadow:0 1px 0 rgba(255,255,255,.65) inset,0 28px 72px -26px rgba(143,170,198,1)}
+  .btn-ghost{border-color:var(--line-2);background:rgba(255,255,255,.035);color:var(--bone)}
+  .btn-ghost:hover{border-color:rgba(221,231,241,.45);background:rgba(255,255,255,.06)}
+  .btn-sm{padding:10px 16px;font-size:14px}
   .nav-cta{display:none}
-  @media(min-width:901px){.nav-cta{display:inline-flex}}
+  @media(min-width:900px){.nav-cta{display:inline-flex}}
 
-  /* ---------- buttons ---------- */
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;
-    font-family:var(--sans);font-weight:600;font-size:15px;
-    padding:13px 22px;border-radius:10px;cursor:pointer;border:1px solid transparent;
-    transition:transform .15s,box-shadow .25s,background .2s;white-space:nowrap;
-  }
-  .btn-primary{
-    color:#10151D;background:var(--chrome);
-    box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 6px 22px -12px rgba(143,170,198,.45);
-  }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 12px 30px -14px rgba(143,170,198,.6)}
-  .btn-ghost{color:var(--bone);border-color:var(--line);background:rgba(255,255,255,.02)}
-  .btn-ghost:hover{border-color:var(--steel);color:#fff;transform:translateY(-2px)}
-  .btn-sm{padding:9px 16px;font-size:14px}
+  .hero{position:relative;padding:86px 0 70px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:50px;align-items:center}
+  .hero-copy{position:relative;z-index:2}
+  .hero-badge{display:inline-flex;align-items:center;gap:9px;margin-bottom:20px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;color:var(--steel-soft);font-size:13px;font-weight:700}
+  .hero-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 18px rgba(96,242,142,.8)}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(44px,6.4vw,82px);line-height:1.01;letter-spacing:-.03em;max-width:12ch;text-wrap:balance}
+  .hero .sub{margin-top:24px;color:var(--bone-muted);font-size:clamp(17px,2vw,20px);max-width:55ch;text-wrap:balance}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .trust-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:590px;margin-top:30px}
+  .trust{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));padding:14px 14px;min-height:82px}
+  .trust strong{display:block;font-family:var(--serif);font-size:23px;line-height:1;color:var(--steel-soft);font-weight:600}
+  .trust span{display:block;margin-top:7px;color:var(--bone-muted);font-size:13px;line-height:1.35}
 
-  /* ---------- hero ---------- */
-  .hero{position:relative;padding:96px 0 88px;text-align:center;overflow:hidden}
-  .hero-glow{
-    position:absolute;inset:-20% 0 auto 0;height:680px;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(620px 360px at 50% 8%,rgba(143,170,198,.18),transparent 70%),
-      radial-gradient(900px 500px at 50% -5%,rgba(40,55,73,.55),transparent 72%);
-  }
-  .hero .wrap{position:relative;z-index:1}
-  .emblem{
-    width:148px;height:148px;margin:0 auto 26px;
-    filter:drop-shadow(0 18px 40px rgba(0,0,0,.55));
-    animation:rise .9s cubic-bezier(.2,.7,.2,1) both;
-  }
-  .hero h1{
-    font-family:var(--serif);font-weight:600;
-    font-size:clamp(40px,7vw,76px);line-height:1.04;letter-spacing:-.01em;
-    margin:14px auto 0;max-width:14ch;text-wrap:balance;
-  }
-  .hero .sub{
-    color:var(--bone-muted);font-size:clamp(16px,2.1vw,19px);
-    max-width:52ch;margin:22px auto 0;text-wrap:balance;
-  }
-  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
-  .brandline{
-    font-family:var(--mono);font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;
-    color:var(--steel);margin-top:14px;
-  }
+  .hero-visual{position:relative;min-height:660px;display:grid;place-items:center}
+  .portrait-halo{position:absolute;inset:8% -4% 0 0;background:radial-gradient(closest-side,rgba(70,184,255,.24),transparent 72%);filter:blur(12px);opacity:.75}
+  .portrait-card{position:relative;width:min(100%,470px);height:640px;border-radius:32px;overflow:hidden;background:linear-gradient(180deg,#121922,#06090D);border:1px solid rgba(221,231,241,.16);box-shadow:0 42px 115px -50px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.045) inset;isolation:isolate}
+  .portrait-card::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.10),transparent 30%,transparent 66%,rgba(3,5,7,.68)),radial-gradient(620px 420px at 50% 18%,rgba(143,170,198,.12),transparent 70%)}
+  .portrait-card::after{content:"";position:absolute;inset:1px;border-radius:31px;border:1px solid rgba(255,255,255,.075);z-index:3;pointer-events:none}
+  .portrait-card img{width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.012)}
+  .side-chip{position:absolute;z-index:4;border:1px solid rgba(221,231,241,.18);background:rgba(9,14,20,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 24px 60px -36px #000;border-radius:18px;padding:13px 15px;color:var(--steel-soft);font-weight:800}
+  .side-chip small{display:block;margin-top:2px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-muted);font-weight:700}
+  .chip-top{right:0;top:82px;transform:translateX(20%)}
+  .chip-bottom{left:0;bottom:92px;transform:translateX(-18%)}
+  .brandline{font-family:var(--mono);font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--steel);margin-top:20px}
 
-  /* reveal */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
+  section,.sec-head,footer{position:relative;z-index:2}
+  .sec-head{max-width:var(--maxw);margin:30px auto 0;padding:72px 24px 0;border-top:1px solid var(--line)}
+  .sec-head .eyebrow{display:block;margin-bottom:13px}
+  .sec-head h2{font-family:var(--serif);font-size:clamp(31px,4.7vw,50px);font-weight:600;line-height:1.08;letter-spacing:-.02em;max-width:18ch;text-wrap:balance}
+  .sec-head p{margin-top:14px;color:var(--bone-muted);font-size:17px;max-width:62ch}
 
-  /* ---------- pillars ---------- */
-  section{position:relative}
-  .pillars{padding:30px 0 20px}
-  .pillar-grid{display:grid;gap:18px;grid-template-columns:1fr}
-  @media(min-width:780px){.pillar-grid{grid-template-columns:repeat(3,1fr)}}
-  .card{
-    background:linear-gradient(180deg,var(--ink-2),var(--ink));
-    border:1px solid var(--line);border-radius:16px;padding:26px 24px;
-    transition:border-color .3s,transform .3s;
-  }
-  .card:hover{border-color:#3a4756;transform:translateY(-3px)}
-  .card .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--steel);text-transform:uppercase}
-  .card h3{font-family:var(--serif);font-weight:600;font-size:23px;margin:14px 0 8px}
-  .card p{color:var(--bone-muted);font-size:15.5px}
+  .pillars{padding:32px 0 8px}
+  .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));padding:28px 25px;transition:transform .25s,border-color .25s,background .25s}
+  .card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 180px at 30% 0%,rgba(143,170,198,.11),transparent 70%);opacity:0;transition:.25s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(221,231,241,.28);background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.03))}
+  .card:hover::before{opacity:1}
+  .card .lbl{position:relative;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel);font-weight:700}
+  .card h3{position:relative;margin-top:15px;font-family:var(--serif);font-size:24px;font-weight:600;line-height:1.15}
+  .card p{position:relative;margin-top:10px;color:var(--bone-muted);font-size:15.5px}
 
-  /* ---------- section heading ---------- */
-  .sec-head{max-width:var(--maxw);margin:48px auto 0;padding:60px 24px 0;border-top:1px solid var(--line)}
-  .sec-head .eyebrow{display:block;margin-bottom:14px}
-  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.4vw,46px);line-height:1.1;letter-spacing:-.01em;max-width:18ch;text-wrap:balance}
+  .about{padding:34px 0 8px}
+  .about-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:28px;align-items:stretch}
+  .quote-card,.about-card{border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));padding:34px;box-shadow:0 30px 80px -60px rgba(0,0,0,.9)}
+  .quote-card p{color:var(--bone-muted);font-size:17px;margin-top:14px}
+  .quote-card p:first-child{margin-top:0}
+  .quote-card strong{color:var(--bone);font-weight:800}
+  .sig{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--steel-soft);margin-top:22px}
+  .about-card{background:radial-gradient(120% 110% at 0% 0%,rgba(143,170,198,.12),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+  .about-card img{width:84px;height:84px;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
+  .about-list{display:grid;gap:14px}
+  .about-list div{display:flex;gap:12px;align-items:flex-start;color:var(--bone-muted)}
+  .about-list b{color:var(--steel-soft)}
+  .check{width:22px;height:22px;flex:0 0 22px;border-radius:999px;display:grid;place-items:center;background:rgba(96,242,142,.13);color:var(--green);font-size:13px;font-weight:800}
 
-  /* ---------- about ---------- */
-  .about{padding:34px 0 10px}
-  .about-grid{display:grid;gap:30px;grid-template-columns:1fr}
-  @media(min-width:840px){.about-grid{grid-template-columns:1.05fr .95fr;align-items:center}}
-  .about-card{
-    position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
-    background:radial-gradient(120% 120% at 0% 0%,#1c2530,#0b0f15);
-    padding:34px;
-  }
-  .about-card .emblem-lg{width:96px;height:96px;margin-bottom:18px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))}
-  .about p{color:var(--bone-muted);font-size:16.5px;margin-top:14px}
-  .about p strong{color:var(--bone);font-weight:600}
-  .sig{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--steel-soft);margin-top:20px}
-
-  /* ---------- process + chat ---------- */
-  .process{padding:20px 0 0}
-  .proc-grid{display:grid;gap:36px;grid-template-columns:1fr;align-items:center}
-  @media(min-width:900px){.proc-grid{grid-template-columns:1fr 1fr;gap:54px}}
-  .steps{display:flex;flex-direction:column;gap:26px;margin-top:6px}
-  .step{display:flex;gap:18px}
-  .step .num{font-family:var(--mono);font-size:13px;color:var(--steel);padding-top:4px;min-width:30px}
-  .step h4{font-family:var(--serif);font-weight:600;font-size:20px;margin-bottom:4px}
-  .step p{color:var(--bone-muted);font-size:15px}
-
-  /* phone / chat mock */
-  .phone{
-    justify-self:center;width:100%;max-width:340px;
-    background:linear-gradient(180deg,#0e131a,#0a0e14);
-    border:1px solid #2b3744;border-radius:30px;padding:16px 14px 20px;
-    box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset;
-  }
-  .phone-top{display:flex;align-items:center;gap:10px;padding:6px 6px 14px;border-bottom:1px solid var(--line);margin-bottom:14px}
-  .phone-top img{width:34px;height:34px}
-  .phone-top .nm{font-weight:600;font-size:14px}
-  .phone-top .st{font-family:var(--mono);font-size:10px;color:#5fbf86;letter-spacing:.05em}
+  .process{padding:34px 0 0}
+  .proc-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .steps{display:grid;gap:18px}
+  .step{display:flex;gap:18px;padding:20px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.035)}
+  .step .num{font-family:var(--mono);font-size:13px;color:var(--steel);padding-top:3px;min-width:34px;font-weight:700}
+  .step h4{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.15}
+  .step p{margin-top:6px;color:var(--bone-muted);font-size:15.5px}
+  .phone{justify-self:center;width:100%;max-width:355px;border:1px solid rgba(221,231,241,.18);border-radius:34px;padding:16px;background:linear-gradient(180deg,#0e151d,#080C11);box-shadow:0 40px 100px -52px rgba(0,0,0,.92),0 0 0 1px rgba(255,255,255,.035) inset}
+  .phone-top{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:7px 7px 15px;margin-bottom:14px}
+  .phone-top img{width:36px;height:36px}
+  .phone-top .nm{font-weight:800;font-size:14px}
+  .phone-top .st{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.05em}
   .msgs{display:flex;flex-direction:column;gap:10px;padding:4px}
-  .msg{max-width:82%;padding:10px 13px;border-radius:15px;font-size:13.5px;line-height:1.45}
-  .msg.out{align-self:flex-end;background:#2a3a4d;border-bottom-right-radius:5px}
-  .msg.in{align-self:flex-start;background:var(--ink-3);border:1px solid var(--line);border-bottom-left-radius:5px}
-  .msg .mac{color:var(--steel-soft);font-family:var(--mono);font-size:11.5px;display:block;margin-top:6px}
-  .msg.link{align-self:flex-start;background:linear-gradient(135deg,#243140,#1a232e);border:1px solid #3a4a5c;color:var(--steel-soft);font-weight:500;display:flex;align-items:center;gap:8px}
+  .msg{max-width:84%;padding:11px 14px;border-radius:17px;font-size:13.5px;line-height:1.45}
+  .msg.out{align-self:flex-end;background:#26384C;border-bottom-right-radius:6px}
+  .msg.in{align-self:flex-start;background:rgba(255,255,255,.045);border:1px solid var(--line);border-bottom-left-radius:6px}
+  .msg .mac{display:block;margin-top:6px;color:var(--steel-soft);font-family:var(--mono);font-size:11px}
+  .msg.link{align-self:flex-start;background:linear-gradient(135deg,#243140,#1A232E);border:1px solid rgba(143,170,198,.35);color:var(--steel-soft);font-weight:800}
 
-  /* ---------- CTA band ---------- */
-  .cta-band{margin:90px 0 0;padding:70px 0;position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 50% 0%,rgba(143,170,198,.14),transparent 70%);pointer-events:none}
-  .cta-inner{position:relative;text-align:center}
-  .cta-inner h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1.08;text-wrap:balance}
-  .cta-inner p{color:var(--bone-muted);margin:16px auto 0;max-width:46ch;font-size:17px;text-wrap:balance}
-  .cta-inner .hero-ctas{margin-top:30px}
-
-  /* ---------- footer ---------- */
-  footer{padding:54px 0 40px}
-  .foot{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
-  @media(min-width:760px){.foot{flex-direction:row;justify-content:space-between;align-items:center}}
-  .foot .brand img{width:40px;height:40px}
-  .foot .meta{font-family:var(--mono);font-size:12px;color:var(--bone-muted);letter-spacing:.05em;line-height:1.9}
-  .foot a.contact{color:var(--steel-soft);border-bottom:1px solid transparent;transition:.2s}
-  .foot a.contact:hover{border-color:var(--steel-soft)}
-  .legal{margin-top:26px;font-size:12px;color:#5b6675;font-family:var(--mono)}
-  .built{margin-top:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:#5b6675}
-  .built .spark{color:var(--steel);margin-right:6px}
-  .built a{color:var(--steel-soft);border-bottom:1px solid transparent;transition:.2s}
-  .built a:hover{border-color:var(--steel-soft);color:#fff}
-
-  /* header condenses on scroll */
-  .bar{transition:height .3s ease}
-  .brand img{transition:width .3s ease,height .3s ease}
-  header.scrolled .bar{height:54px}
-  header.scrolled .brand img{width:26px;height:26px}
-
-  /* staggered reveals */
-  .pillar-grid .reveal:nth-child(2),.steps .reveal:nth-child(2){transition-delay:.09s}
-  .pillar-grid .reveal:nth-child(3),.steps .reveal:nth-child(3){transition-delay:.18s}
-
-  /* hero scroll cue */
-  .scrollcue{margin:42px auto 0;width:1px;height:48px;background:linear-gradient(var(--steel),transparent);position:relative;opacity:.55}
-  .scrollcue span{position:absolute;top:0;left:50%;width:4px;height:4px;border-radius:50%;background:var(--steel-soft);transform:translateX(-50%);box-shadow:0 0 8px var(--steel);animation:scrolldot 2.4s ease-in-out infinite}
-  @keyframes scrolldot{0%{top:0;opacity:0}25%{opacity:1}100%{top:44px;opacity:0}}
-
-  /* FAQ */
-  .faq{padding:22px 0 0}
-  .faq-list{max-width:840px;margin:0 auto}
-  .faq details{border-top:1px solid var(--line)}
-  .faq details:last-child{border-bottom:1px solid var(--line)}
-  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 4px;font-family:var(--serif);font-size:clamp(18px,2.2vw,21px);color:var(--bone);transition:color .2s}
+  .faq{padding:28px 0 0}
+  .faq-list{max-width:860px;margin:0 auto;border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 4px;font-family:var(--serif);font-size:clamp(18px,2vw,21px);color:var(--bone);transition:.18s}
   .faq summary:hover{color:#fff}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary .ic{font-family:var(--mono);font-size:20px;color:var(--steel);transition:transform .3s ease;flex:none}
-  .faq details[open] summary .ic{transform:rotate(45deg)}
-  .faq .ans{color:var(--bone-muted);font-size:16px;line-height:1.7;padding:0 4px 24px;max-width:72ch}
+  .faq .ic{font-family:var(--mono);font-size:20px;color:var(--steel);transition:transform .25s;flex:none}
+  .faq details[open] .ic{transform:rotate(45deg)}
+  .faq .ans{color:var(--bone-muted);font-size:16px;line-height:1.72;padding:0 4px 24px;max-width:75ch}
 
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important}
-    .reveal{opacity:1;transform:none;transition:none}
-    html{scroll-behavior:auto}
+  .cta-band{margin:86px 0 0;padding:78px 0;position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 320px at 50% 0%,rgba(96,242,142,.12),transparent 70%),radial-gradient(640px 360px at 70% 20%,rgba(70,184,255,.10),transparent 74%)}
+  .cta-inner{position:relative;text-align:center}
+  .cta-inner h2{font-family:var(--serif);font-size:clamp(33px,5.4vw,56px);line-height:1.06;font-weight:600;text-wrap:balance}
+  .cta-inner p{margin:16px auto 0;max-width:48ch;color:var(--bone-muted);font-size:17px;text-wrap:balance}
+  .cta-inner .hero-ctas{justify-content:center;margin-top:30px}
+
+  footer{padding:54px 0 40px}
+  .foot{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+  .foot .brand img{width:40px;height:40px}
+  .meta{font-family:var(--mono);font-size:12px;color:var(--bone-muted);letter-spacing:.045em;line-height:1.9}
+  .contact{color:var(--steel-soft);border-bottom:1px solid transparent;transition:.18s}
+  .contact:hover{color:#fff;border-color:var(--steel-soft)}
+  .legal{margin-top:26px;font-family:var(--mono);font-size:12px;color:#5B6675}
+  .built{margin-top:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:#5B6675}
+  .built .spark{color:var(--steel);margin-right:6px}
+  .built a{color:var(--steel-soft);border-bottom:1px solid transparent}
+  .built a:hover{border-color:var(--steel-soft);color:#fff}
+
+  @media(max-width:1040px){
+    .hero-grid{grid-template-columns:1fr;gap:38px;text-align:center}
+    .hero h1,.hero .sub{margin-left:auto;margin-right:auto}
+    .hero-ctas{justify-content:center}
+    .trust-row{margin-left:auto;margin-right:auto}
+    .hero-visual{min-height:auto}
+    .portrait-card{height:min(680px,115vw);max-height:680px}
+    .side-chip{display:none}
   }
-  @keyframes rise{from{opacity:0;transform:translateY(26px) scale(.96)}to{opacity:1;transform:none}}
-  :focus-visible{outline:2px solid var(--steel);outline-offset:3px;border-radius:6px}
-
-  /* ---- Handy: leicht & flüssig (am Ende, damit es Basis-Regeln überschreibt) ---- */
-  @media (max-width:900px),(hover:none){
-    header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(11,15,21,.94)}
-    #grain{display:none}
-    .blob{animation:none;filter:blur(70px);opacity:.5}
-    .scrollcue{display:none}
-    .reveal{transition-duration:.45s}
-    .nav-cta{display:none}
+  @media(max-width:820px){
+    .wrap{padding:0 20px}
+    .hero{padding:66px 0 52px}
+    .pillar-grid,.about-grid,.proc-grid{grid-template-columns:1fr}
+    .trust-row{grid-template-columns:1fr;max-width:420px}
+    .portrait-card{width:min(100%,430px);border-radius:26px}
+    .sec-head{padding-top:58px}
+    .bar{height:64px}
+    .langs button{padding:7px 8px}
+  }
+  @media(max-width:520px){
+    .hero h1{font-size:clamp(39px,12vw,54px)}
+    .hero-badge{font-size:12px;letter-spacing:0}
+    .btn{width:100%}
+    .hero-ctas{gap:10px}
+    .portrait-card{height:560px}
+    .quote-card,.about-card{padding:26px 22px;border-radius:22px}
+    .card{padding:25px 22px}
+  }
+  @media(min-width:760px){.foot{flex-direction:row;justify-content:space-between;align-items:center}}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
   }
 </style>
 </head>
 <body>
-
-<canvas id="bg" aria-hidden="true"></canvas>
-<div id="veil" aria-hidden="true"></div>
-<div id="grain" aria-hidden="true"></div>
-<div class="fallbacks" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
+<div class="aurora" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
 
 <header id="top">
   <div class="wrap bar">
@@ -310,24 +273,36 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-glow"></div>
-  <div class="wrap">
-    <img class="emblem" src="logo.webp" alt="Rákosi György – RGYM" />
-    <p class="eyebrow" data-i18n="hero_eyebrow">Personal Trainer · Meran</p>
-    <h1 data-i18n-html="hero_title">Deine <span class="chrome-text">Transformation</span> beginnt hier.</h1>
-    <p class="sub" data-i18n="hero_sub">Training und Ernährung, die zu deinem Leben passen — mit einem Coach, der jeden Tag dranbleibt. Vor Ort, online und direkt auf deinem Handy.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-primary" data-tg href="#" target="_blank" rel="noopener" data-i18n="hero_cta1">Coaching starten</a>
-      <a class="btn btn-ghost" href="#prozess" data-i18n="hero_cta2">So funktioniert's</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <div class="hero-badge" data-i18n="hero_badge">Meran · Online · App Coaching</div>
+      <p class="eyebrow" data-i18n="hero_eyebrow">Personal Trainer · Meran</p>
+      <h1 data-i18n-html="hero_title">Trainiere mit <span class="chrome-text">echter Energie.</span></h1>
+      <p class="sub" data-i18n="hero_sub">Training und Ernährung, die zu deinem Leben passen — mit einem Coach, der dich täglich begleitet. Vor Ort, online und direkt auf deinem Handy.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" data-tg href="#" target="_blank" rel="noopener" data-i18n="hero_cta1">Coaching starten</a>
+        <a class="btn btn-ghost" href="#prozess" data-i18n="hero_cta2">So funktioniert's</a>
+      </div>
+      <div class="trust-row" aria-label="RGYM Vorteile">
+        <div class="trust"><strong data-i18n="trust_1_h">1:1</strong><span data-i18n="trust_1_p">persönliches Coaching</span></div>
+        <div class="trust"><strong data-i18n="trust_2_h">DE · HU · IT</strong><span data-i18n="trust_2_p">in deiner Sprache</span></div>
+        <div class="trust"><strong data-i18n="trust_3_h">App + Bot</strong><span data-i18n="trust_3_p">tägliche Begleitung</span></div>
+      </div>
+      <p class="brandline">Body · Soul · Transformation</p>
     </div>
-    <p class="brandline">Body · Soul · Transformation</p>
-    <div class="scrollcue" aria-hidden="true"><span></span></div>
+
+    <div class="hero-visual reveal" aria-label="Rákosi György">
+      <div class="portrait-halo"></div>
+      <div class="portrait-card">
+        <img src="gyorgy-portrait.webp" alt="Rákosi György" width="1122" height="1402" />
+      </div>
+      <div class="side-chip chip-top">RGYM<small data-i18n="chip_top">Coach Energy</small></div>
+      <div class="side-chip chip-bottom" data-i18n-html="chip_bottom">No excuses<small>nur Fortschritt</small></div>
+    </div>
   </div>
 </section>
 
-<!-- PILLARS -->
 <section class="pillars">
   <div class="wrap pillar-grid">
     <div class="card reveal">
@@ -348,29 +323,33 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <div class="sec-head reveal">
   <span class="eyebrow" data-i18n="about_eyebrow">Über György</span>
   <h2 data-i18n="about_h">Coaching ist Kopfsache — und Konsequenz.</h2>
+  <p data-i18n="about_intro">György wirkt nicht wie ein anonymer Plan aus dem Internet. Er ist präsent, direkt und begleitet dich so, dass du wirklich dranbleibst.</p>
 </div>
 <section class="about">
   <div class="wrap about-grid">
-    <div class="reveal">
+    <div class="quote-card reveal">
       <p data-i18n-html="about_p1">Ich bin <strong>Rákosi György</strong>, Personal Trainer aus Leidenschaft. Mein Ansatz bringt Körper, Kopf und Konsequenz zusammen — damit aus guten Vorsätzen echte Veränderung wird.</p>
       <p data-i18n="about_p2">Kein Schema F, keine leeren Versprechen. Wir setzen ein Ziel, bauen einen Plan, der zu deinem Leben passt, und bleiben dran — Woche für Woche.</p>
       <p class="sig" data-i18n="about_sig">Body, Soul, Transformation — kein Spruch, sondern wie ich arbeite.</p>
     </div>
     <div class="about-card reveal">
-      <img class="emblem-lg" src="logo.webp" alt="RGYM" />
-      <p data-i18n-html="about_card"><strong>Persönlich.</strong> Ein fester Ansprechpartner.<br/><strong>Datenbasiert.</strong> Dein Fortschritt wird sichtbar.<br/><strong>Mehrsprachig.</strong> DE · HU · IT.</p>
+      <img src="logo.webp" alt="RGYM" />
+      <div class="about-list">
+        <div><span class="check">✓</span><span data-i18n-html="about_point_1"><b>Persönlich.</b> Ein fester Ansprechpartner statt anonymer Standardplan.</span></div>
+        <div><span class="check">✓</span><span data-i18n-html="about_point_2"><b>Datenbasiert.</b> Fortschritt, Ernährung und Training werden sichtbar.</span></div>
+        <div><span class="check">✓</span><span data-i18n-html="about_point_3"><b>Mehrsprachig.</b> Deutsch, Ungarisch und Italienisch.</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS + CHAT -->
 <div class="sec-head reveal" id="prozess">
   <span class="eyebrow" data-i18n="proc_eyebrow">So läuft dein Coaching</span>
   <h2 data-i18n="proc_h">Dein Coach — direkt im Chat.</h2>
+  <p data-i18n="proc_intro">Einfach starten, sauber loggen, klar sehen, was als Nächstes kommt.</p>
 </div>
 <section class="process">
   <div class="wrap proc-grid">
@@ -396,7 +375,6 @@
   </div>
 </section>
 
-<!-- FAQ -->
 <div class="sec-head reveal">
   <span class="eyebrow" data-i18n="faq_eyebrow">Häufige Fragen</span>
   <h2 data-i18n="faq_h">Gut zu wissen.</h2>
@@ -426,11 +404,10 @@
   </div>
 </section>
 
-<!-- CTA BAND -->
 <section class="cta-band">
-  <div class="wrap cta-inner">
+  <div class="wrap cta-inner reveal">
     <h2 data-i18n="cta_h">Bereit für deine Transformation?</h2>
-    <p data-i18n="cta_p">Schreib mir auf Telegram oder per Mail. Wir finden den Plan, der zu dir passt.</p>
+    <p data-i18n="cta_p">Schreib György auf Telegram oder per Mail. Ihr findet den Plan, der zu deinem Leben passt.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" data-tg href="#" target="_blank" rel="noopener" data-i18n="cta_b1">Telegram öffnen</a>
       <a class="btn btn-ghost" data-mail href="#" data-i18n="cta_b2">E-Mail schreiben</a>
@@ -438,7 +415,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="wrap foot">
     <a class="brand" href="#top"><img src="logo.webp" alt="RGYM" /> RGYM</a>
@@ -454,18 +430,15 @@
 </footer>
 
 <script>
-  // ---- Kontakt-Links zentral (hier anpassen) ----
   const LINKS = {
     telegram: "https://t.me/gyorgy_rakosi_fitness_bot",
     app:      "https://coach-customer-app.vercel.app",
     email:    "hallo@rakosi-gym.at"
   };
-
-  // ---- Brand-Credit (HIER deinen Brand-Namen eintragen) ----
-  const BUILDER = { name: "Attila", url: "" };  // url leer lassen = kein Link
+  const BUILDER = { name: "Attila", url: "" };
   (function(){
-    var el=document.getElementById('built'); if(!el) return;
-    var inner='<span class="spark">▲</span>Powered by ';
+    const el=document.getElementById('built'); if(!el) return;
+    let inner='<span class="spark">▲</span>Powered by ';
     inner += BUILDER.url ? '<a href="'+BUILDER.url+'" target="_blank" rel="noopener">'+BUILDER.name+'</a>' : BUILDER.name;
     el.innerHTML=inner;
   })();
@@ -473,106 +446,62 @@
   document.querySelectorAll('[data-app]').forEach(a=>a.href=LINKS.app);
   document.querySelectorAll('[data-mail]').forEach(a=>a.href='mailto:'+LINKS.email);
 
-  // ---- i18n ----
   const I18N = {
     de:{
       title:"RGYM · Rákosi György — Personal Trainer Meran",
       nav_cta:"Coaching starten",
+      hero_badge:"Meran · Online · App Coaching",
       hero_eyebrow:"Personal Trainer · Meran",
-      hero_title:'Deine <span class="chrome-text">Transformation</span> beginnt hier.',
-      hero_sub:"Training und Ernährung, die zu deinem Leben passen — mit einem Coach, der jeden Tag dranbleibt. Vor Ort, online und direkt auf deinem Handy.",
+      hero_title:'Trainiere mit <span class="chrome-text">echter Energie.</span>',
+      hero_sub:"Training und Ernährung, die zu deinem Leben passen — mit einem Coach, der dich täglich begleitet. Vor Ort, online und direkt auf deinem Handy.",
       hero_cta1:"Coaching starten", hero_cta2:"So funktioniert's",
+      trust_1_h:"1:1", trust_1_p:"persönliches Coaching",
+      trust_2_h:"DE · HU · IT", trust_2_p:"in deiner Sprache",
+      trust_3_h:"App + Bot", trust_3_p:"tägliche Begleitung",
+      chip_top:"Coach Energy", chip_bottom:'No excuses<small>nur Fortschritt</small>',
       p1_lbl:"01 — Training", p1_h:"1:1 Personal Training", p1_p:"Echtes Coaching, auf dich abgestimmt — im Studio oder remote. Jede Einheit hat ein Ziel.",
       p2_lbl:"02 — Ernährung", p2_h:"Ernährung, die wirkt", p2_p:"Klare Pläne statt Verbote. Du loggst per Chat, dein Plan passt sich deinem Alltag an.",
       p3_lbl:"03 — Begleitung", p3_h:"Immer dabei", p3_p:"Bot und App begleiten dich täglich — in Deutsch, Ungarisch und Italienisch.",
-      about_eyebrow:"Über György", about_h:"Coaching ist Kopfsache — und Konsequenz.",
+      about_eyebrow:"Über György", about_h:"Coaching ist Kopfsache — und Konsequenz.", about_intro:"György wirkt nicht wie ein anonymer Plan aus dem Internet. Er ist präsent, direkt und begleitet dich so, dass du wirklich dranbleibst.",
       about_p1:'Ich bin <strong>Rákosi György</strong>, Personal Trainer aus Leidenschaft. Mein Ansatz bringt Körper, Kopf und Konsequenz zusammen — damit aus guten Vorsätzen echte Veränderung wird.',
       about_p2:"Kein Schema F, keine leeren Versprechen. Wir setzen ein Ziel, bauen einen Plan, der zu deinem Leben passt, und bleiben dran — Woche für Woche.",
       about_sig:"Body, Soul, Transformation — kein Spruch, sondern wie ich arbeite.",
-      about_card:'<strong>Persönlich.</strong> Ein fester Ansprechpartner.<br/><strong>Datenbasiert.</strong> Dein Fortschritt wird sichtbar.<br/><strong>Mehrsprachig.</strong> DE · HU · IT.',
-      proc_eyebrow:"So läuft dein Coaching", proc_h:"Dein Coach — direkt im Chat.",
+      about_point_1:'<b>Persönlich.</b> Ein fester Ansprechpartner statt anonymer Standardplan.',
+      about_point_2:'<b>Datenbasiert.</b> Fortschritt, Ernährung und Training werden sichtbar.',
+      about_point_3:'<b>Mehrsprachig.</b> Deutsch, Ungarisch und Italienisch.',
+      proc_eyebrow:"So läuft dein Coaching", proc_h:"Dein Coach — direkt im Chat.", proc_intro:"Einfach starten, sauber loggen, klar sehen, was als Nächstes kommt.",
       s1_h:"Schreib dem Bot", s1_p:"Erzähl, was du isst und trainierst — per Telegram, ganz nebenbei.",
       s2_h:"Bekomm deinen Plan", s2_p:"Training und Ernährung, abgestimmt auf dein Ziel — in deiner Sprache.",
       s3_h:"Sieh deinen Fortschritt", s3_p:"Alles läuft in deiner App zusammen: Pläne, Logs und deine Entwicklung.",
-      chat_status:"● online",
-      chat_m1:"Frühstück: 3 Eier, 60g Haferflocken, Banane",
-      chat_m2:'Stark! Sauber geloggt. <span class="mac">~480 kcal · 32g Eiweiß · noch ~1.320 kcal heute</span>',
-      chat_m3:"Plan für heute?", chat_m4:"Push-Day 💪 4 Übungen, 45 Min. Los geht's!", chat_link:"📲 Plan in der App öffnen",
-      cta_h:"Bereit für deine Transformation?", cta_p:"Schreib mir auf Telegram oder per Mail. Wir finden den Plan, der zu dir passt.",
-      cta_b1:"Telegram öffnen", cta_b2:"E-Mail schreiben",
+      chat_status:"● online", chat_m1:"Frühstück: 3 Eier, 60g Haferflocken, Banane", chat_m2:'Stark! Sauber geloggt. <span class="mac">~480 kcal · 32g Eiweiß · noch ~1.320 kcal heute</span>', chat_m3:"Plan für heute?", chat_m4:"Push-Day 💪 4 Übungen, 45 Min. Los geht's!", chat_link:"📲 Plan in der App öffnen",
       faq_eyebrow:"Häufige Fragen", faq_h:"Gut zu wissen.",
       faq_q1:"Für wen ist das Coaching?", faq_a1:"Für alle, die ernsthaft etwas verändern wollen — ob Einstieg, Wiedereinstieg oder schon Erfahrung. Training und Ernährung werden auf dein Level und dein Ziel abgestimmt.",
       faq_q2:"Vor Ort in Meran oder online?", faq_a2:"Beides. Du kannst persönlich in Meran trainieren oder komplett online begleitet werden — Pläne, Check-ins und Anpassungen laufen ohnehin über App und Telegram.",
       faq_q3:"Wie läuft der Start ab?", faq_a3:"Du meldest dich über Telegram, wir klären dein Ziel und deinen Alltag, dann bekommst du deinen ersten Plan. Ab da begleiten wir dich Woche für Woche.",
       faq_q4:"Brauche ich Vorerfahrung oder ein Studio?", faq_a4:"Nein. Wir starten da, wo du stehst — Übungen für zuhause oder ein normales Fitnessstudio funktionieren beide.",
       faq_q5:"In welchen Sprachen läuft das Coaching?", faq_a5:"Deutsch, Italienisch und Ungarisch — Plan, App und Bot passen sich deiner Sprache an.",
+      cta_h:"Bereit für deine Transformation?", cta_p:"Schreib György auf Telegram oder per Mail. Ihr findet den Plan, der zu deinem Leben passt.", cta_b1:"Telegram öffnen", cta_b2:"E-Mail schreiben",
       foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     },
     hu:{
       title:"RGYM · Rákosi György — Személyi edző, Meran",
-      nav_cta:"Indítsd el",
-      hero_eyebrow:"Személyi edző · Meran",
-      hero_title:'Itt kezdődik a <span class="chrome-text">változásod</span>.',
-      hero_sub:"Edzés és táplálkozás, ami az életedhez igazodik — egy edzővel, aki minden nap melletted van. Teremben, online és egyenesen a telefonodon.",
-      hero_cta1:"Indítsd el", hero_cta2:"Így működik",
-      p1_lbl:"01 — Edzés", p1_h:"1:1 személyi edzés", p1_p:"Valódi coaching, rád szabva — teremben vagy online. Minden edzésnek célja van.",
-      p2_lbl:"02 — Táplálkozás", p2_h:"Táplálkozás, ami működik", p2_p:"Világos tervek tiltások helyett. Chaten naplózol, a terved a mindennapjaidhoz igazodik.",
-      p3_lbl:"03 — Támogatás", p3_h:"Mindig veled", p3_p:"A bot és az app nap mint nap végigkísér — németül, magyarul és olaszul.",
-      about_eyebrow:"Györgyről", about_h:"A coaching fejben dől el — és kitartásban.",
-      about_p1:'<strong>Rákosi György</strong> vagyok, szenvedélyes személyi edző. A módszerem testet, fejet és kitartást köt össze — hogy a jó szándékból valódi változás legyen.',
-      about_p2:"Semmi sablon, semmi üres ígéret. Kitűzünk egy célt, építünk egy tervet, ami az életedhez illik, és kitartunk mellette — hétről hétre.",
-      about_sig:"Body, Soul, Transformation — nem szlogen, hanem ahogyan dolgozom.",
-      about_card:'<strong>Személyes.</strong> Egy állandó kapcsolattartó.<br/><strong>Adatalapú.</strong> A fejlődésed láthatóvá válik.<br/><strong>Többnyelvű.</strong> DE · HU · IT.',
-      proc_eyebrow:"Így zajlik a coaching", proc_h:"Az edződ — egyenesen a chatben.",
-      s1_h:"Írj a botnak", s1_p:"Mondd el, mit eszel és edzel — Telegramon, csak úgy mellékesen.",
-      s2_h:"Megkapod a terved", s2_p:"Edzés és táplálkozás a célodhoz igazítva — a saját nyelveden.",
-      s3_h:"Lásd a fejlődésed", s3_p:"Minden egy helyen, az appodban: tervek, naplók és a fejlődésed.",
-      chat_status:"● online",
-      chat_m1:"Reggeli: 3 tojás, 60g zabpehely, banán",
-      chat_m2:'Szuper! Elmentve. <span class="mac">~480 kcal · 32g fehérje · még ~1.320 kcal ma</span>',
-      chat_m3:"Mi a mai terv?", chat_m4:"Push nap 💪 4 gyakorlat, 45 perc. Hajrá!", chat_link:"📲 Terv megnyitása az appban",
-      cta_h:"Készen állsz a változásra?", cta_p:"Írj Telegramon vagy e-mailben. Megtaláljuk a hozzád illő tervet.",
-      cta_b1:"Telegram megnyitása", cta_b2:"Írj e-mailt",
-      faq_eyebrow:"Gyakori kérdések", faq_h:"Jó tudni.",
-      faq_q1:"Kinek szól a coaching?", faq_a1:"Mindenkinek, aki komolyan változtatni akar — legyen kezdő, visszatérő vagy már tapasztalt. Az edzést és a táplálkozást a szintedhez és a célodhoz igazítjuk.",
-      faq_q2:"Helyben Meranban vagy online?", faq_a2:"Mindkettő. Edzhetsz személyesen Meranban, vagy teljesen online is kísérünk — a tervek, a check-inek és a módosítások amúgy is az appon és Telegramon mennek.",
-      faq_q3:"Hogyan indul az egész?", faq_a3:"Írsz Telegramon, tisztázzuk a célodat és a napirendedet, majd megkapod az első terved. Onnantól hétről hétre kísérünk.",
-      faq_q4:"Kell előzetes tapasztalat vagy konditerem?", faq_a4:"Nem. Onnan indulunk, ahol tartasz — az otthoni gyakorlatok és egy sima konditerem is működik.",
-      faq_q5:"Milyen nyelveken zajlik?", faq_a5:"Németül, olaszul és magyarul — a terv, az app és a bot a nyelvedhez igazodik.",
-      foot_role:"Személyi edző", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
+      nav_cta:"Indítsd el", hero_badge:"Meran · Online · App coaching", hero_eyebrow:"Személyi edző · Meran", hero_title:'Edzés <span class="chrome-text">valódi energiával.</span>', hero_sub:"Edzés és táplálkozás, ami az életedhez igazodik — egy edzővel, aki nap mint nap melletted van. Teremben, online és közvetlenül a telefonodon.", hero_cta1:"Indítsd el", hero_cta2:"Így működik",
+      trust_1_h:"1:1", trust_1_p:"személyes coaching", trust_2_h:"DE · HU · IT", trust_2_p:"a saját nyelveden", trust_3_h:"App + Bot", trust_3_p:"napi támogatás", chip_top:"Coach energia", chip_bottom:'No excuses<small>csak fejlődés</small>',
+      p1_lbl:"01 — Edzés", p1_h:"1:1 személyi edzés", p1_p:"Valódi coaching, rád szabva — teremben vagy online. Minden edzésnek célja van.", p2_lbl:"02 — Táplálkozás", p2_h:"Táplálkozás, ami működik", p2_p:"Világos tervek tiltások helyett. Chaten naplózol, a terved a mindennapjaidhoz igazodik.", p3_lbl:"03 — Támogatás", p3_h:"Mindig veled", p3_p:"A bot és az app nap mint nap végigkísér — németül, magyarul és olaszul.",
+      about_eyebrow:"Györgyről", about_h:"A coaching fejben dől el — és kitartásban.", about_intro:"György nem egy névtelen internetes terv. Jelen van, közvetlen, és úgy kísér, hogy tényleg kitarts.", about_p1:'<strong>Rákosi György</strong> vagyok, szenvedélyes személyi edző. A módszerem testet, fejet és kitartást köt össze — hogy a jó szándékból valódi változás legyen.', about_p2:"Semmi sablon, semmi üres ígéret. Kitűzünk egy célt, építünk egy tervet, ami az életedhez illik, és kitartunk mellette — hétről hétre.", about_sig:"Body, Soul, Transformation — nem szlogen, hanem ahogyan dolgozom.", about_point_1:'<b>Személyes.</b> Egy állandó kapcsolattartó névtelen sablonterv helyett.', about_point_2:'<b>Adatalapú.</b> A fejlődésed, az étkezésed és az edzésed látható.', about_point_3:'<b>Többnyelvű.</b> Németül, magyarul és olaszul.',
+      proc_eyebrow:"Így zajlik a coaching", proc_h:"Az edződ — egyenesen a chatben.", proc_intro:"Egyszerű kezdés, tiszta naplózás, világos következő lépések.", s1_h:"Írj a botnak", s1_p:"Mondd el, mit eszel és edzel — Telegramon, csak úgy mellékesen.", s2_h:"Megkapod a terved", s2_p:"Edzés és táplálkozás a célodhoz igazítva — a saját nyelveden.", s3_h:"Lásd a fejlődésed", s3_p:"Minden egy helyen, az appodban: tervek, naplók és a fejlődésed.", chat_status:"● online", chat_m1:"Reggeli: 3 tojás, 60g zabpehely, banán", chat_m2:'Szuper! Elmentve. <span class="mac">~480 kcal · 32g fehérje · még ~1.320 kcal ma</span>', chat_m3:"Mi a mai terv?", chat_m4:"Push nap 💪 4 gyakorlat, 45 perc. Hajrá!", chat_link:"📲 Terv megnyitása az appban",
+      faq_eyebrow:"Gyakori kérdések", faq_h:"Jó tudni.", faq_q1:"Kinek szól a coaching?", faq_a1:"Mindenkinek, aki komolyan változtatni akar — legyen kezdő, visszatérő vagy már tapasztalt. Az edzést és a táplálkozást a szintedhez és a célodhoz igazítjuk.", faq_q2:"Helyben Meranban vagy online?", faq_a2:"Mindkettő. Edzhetsz személyesen Meranban, vagy teljesen online is kísérünk — a tervek, a check-inek és a módosítások amúgy is az appon és Telegramon mennek.", faq_q3:"Hogyan indul az egész?", faq_a3:"Írsz Telegramon, tisztázzuk a célodat és a napirendedet, majd megkapod az első terved. Onnantól hétről hétre kísérünk.", faq_q4:"Kell előzetes tapasztalat vagy konditerem?", faq_a4:"Nem. Onnan indulunk, ahol tartasz — az otthoni gyakorlatok és egy sima konditerem is működik.", faq_q5:"Milyen nyelveken zajlik?", faq_a5:"Németül, olaszul és magyarul — a terv, az app és a bot a nyelvedhez igazodik.",
+      cta_h:"Készen állsz a változásra?", cta_p:"Írj Györgynek Telegramon vagy e-mailben. Megtaláljátok a hozzád illő tervet.", cta_b1:"Telegram megnyitása", cta_b2:"Írj e-mailt", foot_role:"Személyi edző", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     },
     it:{
       title:"RGYM · Rákosi György — Personal Trainer Merano",
-      nav_cta:"Inizia ora",
-      hero_eyebrow:"Personal Trainer · Merano",
-      hero_title:'La tua <span class="chrome-text">trasformazione</span> inizia qui.',
-      hero_sub:"Allenamento e nutrizione su misura per la tua vita — con un coach che c'è ogni giorno. In studio, online e direttamente sul tuo telefono.",
-      hero_cta1:"Inizia ora", hero_cta2:"Come funziona",
-      p1_lbl:"01 — Allenamento", p1_h:"Personal training 1:1", p1_p:"Coaching vero, su misura per te — in studio o da remoto. Ogni sessione ha un obiettivo.",
-      p2_lbl:"02 — Nutrizione", p2_h:"Nutrizione che funziona", p2_p:"Piani chiari, niente divieti. Registri in chat e il piano si adatta alla tua giornata.",
-      p3_lbl:"03 — Supporto", p3_h:"Sempre con te", p3_p:"Bot e app ti accompagnano ogni giorno — in tedesco, ungherese e italiano.",
-      about_eyebrow:"Chi è György", about_h:"Il coaching è testa — e costanza.",
-      about_p1:'Sono <strong>Rákosi György</strong>, personal trainer per passione. Il mio metodo unisce corpo, testa e costanza — perché dai buoni propositi nasca un vero cambiamento.',
-      about_p2:"Niente schemi preconfezionati, niente promesse vuote. Fissiamo un obiettivo, costruiamo un piano adatto alla tua vita e restiamo costanti — settimana dopo settimana.",
-      about_sig:"Body, Soul, Transformation — non uno slogan, ma il mio modo di lavorare.",
-      about_card:'<strong>Personale.</strong> Un referente fisso.<br/><strong>Basato sui dati.</strong> I tuoi progressi diventano visibili.<br/><strong>Multilingue.</strong> DE · HU · IT.',
-      proc_eyebrow:"Come funziona il coaching", proc_h:"Il tuo coach — direttamente in chat.",
-      s1_h:"Scrivi al bot", s1_p:"Racconta cosa mangi e come ti alleni — su Telegram, senza pensieri.",
-      s2_h:"Ricevi il tuo piano", s2_p:"Allenamento e nutrizione su misura per il tuo obiettivo — nella tua lingua.",
-      s3_h:"Vedi i tuoi progressi", s3_p:"Tutto in un posto, nella tua app: piani, log e i tuoi progressi.",
-      chat_status:"● online",
-      chat_m1:"Colazione: 3 uova, 60g avena, banana",
-      chat_m2:'Ottimo! Registrato. <span class="mac">~480 kcal · 32g proteine · ancora ~1.320 kcal oggi</span>',
-      chat_m3:"Piano per oggi?", chat_m4:"Push day 💪 4 esercizi, 45 min. Si parte!", chat_link:"📲 Apri il piano nell'app",
-      cta_h:"Pronto per la tua trasformazione?", cta_p:"Scrivimi su Telegram o via email. Troviamo il piano giusto per te.",
-      cta_b1:"Apri Telegram", cta_b2:"Scrivi un'email",
-      faq_eyebrow:"Domande frequenti", faq_h:"Buono a sapersi.",
-      faq_q1:"A chi è rivolto il coaching?", faq_a1:"A chiunque voglia cambiare sul serio — che tu sia all'inizio, di ritorno o già esperto. Allenamento e nutrizione vengono adattati al tuo livello e al tuo obiettivo.",
-      faq_q2:"In presenza a Merano o online?", faq_a2:"Entrambi. Puoi allenarti di persona a Merano o essere seguito completamente online — piani, check-in e adattamenti passano comunque da app e Telegram.",
-      faq_q3:"Come si inizia?", faq_a3:"Scrivi su Telegram, definiamo il tuo obiettivo e le tue giornate, poi ricevi il primo piano. Da lì ti seguiamo settimana dopo settimana.",
-      faq_q4:"Servono esperienza o una palestra?", faq_a4:"No. Partiamo da dove sei — funzionano sia gli esercizi a casa sia una normale palestra.",
-      faq_q5:"In che lingue si svolge?", faq_a5:"Tedesco, italiano e ungherese — piano, app e bot si adattano alla tua lingua.",
-      foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
+      nav_cta:"Inizia ora", hero_badge:"Merano · Online · App coaching", hero_eyebrow:"Personal Trainer · Merano", hero_title:'Allenati con <span class="chrome-text">energia vera.</span>', hero_sub:"Allenamento e nutrizione su misura per la tua vita — con un coach che ti segue ogni giorno. In presenza, online e direttamente sul tuo telefono.", hero_cta1:"Inizia ora", hero_cta2:"Come funziona",
+      trust_1_h:"1:1", trust_1_p:"coaching personale", trust_2_h:"DE · HU · IT", trust_2_p:"nella tua lingua", trust_3_h:"App + Bot", trust_3_p:"supporto quotidiano", chip_top:"Coach Energy", chip_bottom:'No excuses<small>solo progresso</small>',
+      p1_lbl:"01 — Allenamento", p1_h:"Personal training 1:1", p1_p:"Coaching vero, su misura per te — in studio o da remoto. Ogni sessione ha un obiettivo.", p2_lbl:"02 — Nutrizione", p2_h:"Nutrizione che funziona", p2_p:"Piani chiari, niente divieti. Registri in chat e il piano si adatta alla tua giornata.", p3_lbl:"03 — Supporto", p3_h:"Sempre con te", p3_p:"Bot e app ti accompagnano ogni giorno — in tedesco, ungherese e italiano.",
+      about_eyebrow:"Chi è György", about_h:"Il coaching è testa — e costanza.", about_intro:"György non sembra un piano anonimo trovato online. È presente, diretto e ti accompagna per farti restare costante.", about_p1:'Sono <strong>Rákosi György</strong>, personal trainer per passione. Il mio metodo unisce corpo, testa e costanza — perché dai buoni propositi nasca un vero cambiamento.', about_p2:"Niente schemi preconfezionati, niente promesse vuote. Fissiamo un obiettivo, costruiamo un piano adatto alla tua vita e restiamo costanti — settimana dopo settimana.", about_sig:"Body, Soul, Transformation — non uno slogan, ma il mio modo di lavorare.", about_point_1:'<b>Personale.</b> Un referente fisso invece di un piano standard anonimo.', about_point_2:'<b>Basato sui dati.</b> Progressi, nutrizione e allenamento diventano visibili.', about_point_3:'<b>Multilingue.</b> Tedesco, ungherese e italiano.',
+      proc_eyebrow:"Come funziona il coaching", proc_h:"Il tuo coach — direttamente in chat.", proc_intro:"Inizio semplice, registrazione chiara e prossimi passi sempre visibili.", s1_h:"Scrivi al bot", s1_p:"Racconta cosa mangi e come ti alleni — su Telegram, senza pensieri.", s2_h:"Ricevi il tuo piano", s2_p:"Allenamento e nutrizione su misura per il tuo obiettivo — nella tua lingua.", s3_h:"Vedi i tuoi progressi", s3_p:"Tutto in un posto, nella tua app: piani, log e i tuoi progressi.", chat_status:"● online", chat_m1:"Colazione: 3 uova, 60g avena, banana", chat_m2:'Ottimo! Registrato. <span class="mac">~480 kcal · 32g proteine · ancora ~1.320 kcal oggi</span>', chat_m3:"Piano per oggi?", chat_m4:"Push day 💪 4 esercizi, 45 min. Si parte!", chat_link:"📲 Apri il piano nell'app",
+      faq_eyebrow:"Domande frequenti", faq_h:"Buono a sapersi.", faq_q1:"A chi è rivolto il coaching?", faq_a1:"A chiunque voglia cambiare sul serio — che tu sia all'inizio, di ritorno o già esperto. Allenamento e nutrizione vengono adattati al tuo livello e al tuo obiettivo.", faq_q2:"In presenza a Merano o online?", faq_a2:"Entrambi. Puoi allenarti di persona a Merano o essere seguito completamente online — piani, check-in e adattamenti passano comunque da app e Telegram.", faq_q3:"Come si inizia?", faq_a3:"Scrivi su Telegram, definiamo il tuo obiettivo e le tue giornate, poi ricevi il primo piano. Da lì ti seguiamo settimana dopo settimana.", faq_q4:"Servono esperienza o una palestra?", faq_a4:"No. Partiamo da dove sei — funzionano sia gli esercizi a casa sia una normale palestra.", faq_q5:"In che lingue si svolge?", faq_a5:"Tedesco, italiano e ungherese — piano, app e bot si adattano alla tua lingua.",
+      cta_h:"Pronto per la tua trasformazione?", cta_p:"Scrivi a György su Telegram o via email. Troverete il piano giusto per te.", cta_b1:"Apri Telegram", cta_b2:"Scrivi un'email", foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
     }
   };
 
@@ -586,138 +515,28 @@
     document.querySelectorAll('[data-i18n-html]').forEach(el=>{
       const k = el.getAttribute('data-i18n-html'); if(dict[k]!==undefined) el.innerHTML = dict[k];
     });
-    document.querySelectorAll('.langs button').forEach(b=>{
-      b.classList.toggle('active', b.dataset.lang===lang);
-    });
+    document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
     try{ localStorage.setItem('rgym_lang', lang); }catch(e){}
   }
-  document.querySelectorAll('.langs button').forEach(b=>{
-    b.addEventListener('click',()=>setLang(b.dataset.lang));
-  });
-  // Startsprache: gespeichert -> Browser -> de
+  document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
   let start='de';
   try{ const s=localStorage.getItem('rgym_lang'); if(s) start=s; }catch(e){}
   if(start==='de'){ const n=(navigator.language||'').slice(0,2); if(['hu','it'].includes(n)) start=n; }
   setLang(start);
 
-  // ---- scroll reveal ----
-  const io=new IntersectionObserver((es)=>{
-    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // ---- header border on scroll ----
   const hdr=document.getElementById('top');
   const onScroll=()=>hdr.classList.toggle('scrolled', window.scrollY>12);
   onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
-</script>
 
-<script>
-(function(){
-  var canvas=document.getElementById('bg');
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Auf Touch-/Handy-Geräten den schweren Shader NICHT laufen lassen (Performance).
-  var lowPower=window.matchMedia&&(window.matchMedia('(hover: none)').matches||window.matchMedia('(max-width: 900px)').matches);
-  if(lowPower){ document.body.classList.add('no-webgl'); return; }
-  var gl=null;
-  try{ gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl'); }catch(e){}
-  if(!gl){ document.body.classList.add('no-webgl'); return; }
-  document.body.classList.add('webgl-ok');
-
-  var vert='attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0.0,1.0);}';
-  var frag=[
-  '#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
-  'uniform vec2 u_res;uniform float u_time;uniform vec2 u_mouse;',
-  'vec2 hash2(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return -1.0+2.0*fract(sin(p)*43758.5453123);}',
-  'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);',
-  ' return mix(mix(dot(hash2(i+vec2(0.0,0.0)),f-vec2(0.0,0.0)),dot(hash2(i+vec2(1.0,0.0)),f-vec2(1.0,0.0)),u.x),',
-  '            mix(dot(hash2(i+vec2(0.0,1.0)),f-vec2(0.0,1.0)),dot(hash2(i+vec2(1.0,1.0)),f-vec2(1.0,1.0)),u.x),u.y);}',
-  'float fbm(vec2 p){float v=0.0;float a=0.5;mat2 m=mat2(1.6,1.2,-1.2,1.6);',
-  ' for(int i=0;i<5;i++){v+=a*noise(p);p=m*p;a*=0.5;}return v;}',
-  'void main(){',
-  ' vec2 uv=gl_FragCoord.xy/u_res.xy;',
-  ' vec2 p=uv;p.x*=u_res.x/u_res.y;',
-  ' float t=u_time*0.03;',
-  ' vec2 q=vec2(fbm(p+vec2(0.0,t)),fbm(p+vec2(5.2,1.3-t)));',
-  ' vec2 r=vec2(fbm(p+1.6*q+vec2(1.7,9.2)+0.15*t),fbm(p+1.6*q+vec2(8.3,2.8)-0.12*t));',
-  ' float h=fbm(p+2.0*r);',
-  ' float e=0.0028;',
-  ' float hx=fbm(p+2.0*r+vec2(e,0.0))-h;',
-  ' float hy=fbm(p+2.0*r+vec2(0.0,e))-h;',
-  ' vec3 n=normalize(vec3(-hx,-hy,e*7.0));',
-  ' vec2 mp=u_mouse;mp.x*=u_res.x/u_res.y;',
-  ' vec3 L1=normalize(vec3(cos(t*1.1),sin(t*0.8),0.85));',
-  ' vec3 L2=normalize(vec3((mp-p)*1.4,0.55));',
-  ' float spec1=pow(max(dot(n,L1),0.0),6.0);',
-  ' float spec2=pow(max(dot(n,L2),0.0),14.0);',
-  ' float diff=0.5+0.5*dot(n,normalize(vec3(0.3,0.4,1.0)));',
-  ' vec3 dark=vec3(0.043,0.059,0.082);',
-  ' vec3 steel=vec3(0.56,0.667,0.776);',
-  ' vec3 chrome=vec3(0.93,0.96,0.99);',
-  ' vec3 col=mix(dark,steel,smoothstep(0.15,0.95,diff)*0.30);',
-  ' col+=steel*spec1*0.20;',
-  ' col+=chrome*spec2*0.45;',
-  ' col+=chrome*pow(h*0.5+0.5,3.0)*0.025;',
-  ' float vig=smoothstep(1.05,0.12,length(uv-vec2(0.5,0.46)));',
-  ' col*=mix(0.32,0.92,vig);',
-  ' gl_FragColor=vec4(col*0.88,1.0);',
-  '}'].join('\n');
-
-  function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
-    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){return null;}return s;}
-  var vs=sh(gl.VERTEX_SHADER,vert),fs=sh(gl.FRAGMENT_SHADER,frag);
-  if(!vs||!fs){document.body.classList.remove('webgl-ok');document.body.classList.add('no-webgl');return;}
-  var prog=gl.createProgram();gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.linkProgram(prog);
-  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){document.body.classList.add('no-webgl');return;}
-  gl.useProgram(prog);
-  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-  var loc=gl.getAttribLocation(prog,'a_pos');gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  var uRes=gl.getUniformLocation(prog,'u_res'),uTime=gl.getUniformLocation(prog,'u_time'),uMouse=gl.getUniformLocation(prog,'u_mouse');
-
-  var dpr=Math.min(window.devicePixelRatio||1,1.5);
-  function resize(){
-    var w=canvas.clientWidth=window.innerWidth, h=canvas.clientHeight=window.innerHeight;
-    canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);
-    gl.viewport(0,0,canvas.width,canvas.height);
-    gl.uniform2f(uRes,canvas.width,canvas.height);
+  const revealEls=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.14});
+    revealEls.forEach(el=>io.observe(el));
+  }else{
+    revealEls.forEach(el=>el.classList.add('in'));
   }
-  window.addEventListener('resize',resize);resize();
-
-  // mouse / touch -> target highlight (GL y is flipped)
-  var mx=0.5,my=0.55,tx=0.5,ty=0.55;
-  function setTarget(cx,cy){tx=cx/window.innerWidth;ty=1.0-cy/window.innerHeight;}
-  window.addEventListener('mousemove',function(e){setTarget(e.clientX,e.clientY);});
-  window.addEventListener('touchmove',function(e){if(e.touches[0])setTarget(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
-
-  var start=performance.now(),hidden=false;
-  document.addEventListener('visibilitychange',function(){hidden=document.hidden;if(!hidden&&!reduce)requestAnimationFrame(loop);});
-
-  function draw(timeSec){
-    // sanfte Auto-Drift, falls kein Cursor (Mobile/Idle)
-    var aimx=tx, aimy=ty;
-    if(reduce){mx=0.5;my=0.6;}
-    else{mx+=(aimx-mx)*0.03;my+=(aimy-my)*0.03;}
-    gl.uniform1f(uTime,timeSec);
-    gl.uniform2f(uMouse,mx,my);
-    gl.drawArrays(gl.TRIANGLES,0,3);
-  }
-  function loop(){
-    if(hidden)return;
-    var tsec=(performance.now()-start)/1000;
-    // wenn kein Input: Highlight langsam im Kreis wandern lassen (lebt auch ohne Maus)
-    if(performance.now()-lastInput>3500){tx=0.5+0.32*Math.cos(tsec*0.25);ty=0.55+0.22*Math.sin(tsec*0.21);}
-    draw(tsec);
-    requestAnimationFrame(loop);
-  }
-  var lastInput=performance.now()-9999;
-  window.addEventListener('mousemove',function(){lastInput=performance.now();});
-  window.addEventListener('touchstart',function(){lastInput=performance.now();},{passive:true});
-
-  if(reduce){ draw(0.0); }   // ein ruhiges Standbild
-  else{ requestAnimationFrame(loop); }
-})();
 </script>
 </body>
 </html>
