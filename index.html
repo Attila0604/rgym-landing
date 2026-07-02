@@ -159,11 +159,14 @@
   .card p{position:relative;margin-top:10px;color:var(--bone-muted);font-size:15.5px}
 
   .about{padding:34px 0 8px}
-  .about-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:28px;align-items:stretch}
+  .about-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:28px;align-items:stretch}
   .quote-card,.about-card{border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));padding:34px;box-shadow:0 30px 80px -60px rgba(0,0,0,.9)}
-  .quote-card p{color:var(--bone-muted);font-size:17px;margin-top:14px}
-  .quote-card p:first-child{margin-top:0}
-  .quote-card strong{color:var(--bone);font-weight:800}
+  .quote-card{position:relative;overflow:hidden;background:radial-gradient(650px 300px at 0% 0%,rgba(96,242,142,.10),transparent 70%),linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.028))}
+  .quote-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--green),var(--blue));opacity:.82}
+  .story-kicker{display:inline-flex;margin-bottom:18px;padding:8px 11px;border:1px solid rgba(96,242,142,.22);border-radius:999px;background:rgba(96,242,142,.08);color:var(--steel-soft);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+  .quote-card p{position:relative;color:var(--bone-muted);font-size:17px;margin-top:15px}
+  .quote-card p.story-lead{margin-top:0;color:var(--bone);font-size:19px;line-height:1.55}
+  .quote-card strong{color:#fff;font-weight:800}
   .sig{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--steel-soft);margin-top:22px}
   .about-card{background:radial-gradient(120% 110% at 0% 0%,rgba(143,170,198,.12),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));display:flex;flex-direction:column;justify-content:space-between;gap:24px}
   .about-card img{width:84px;height:84px;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
@@ -171,6 +174,8 @@
   .about-list div{display:flex;gap:12px;align-items:flex-start;color:var(--bone-muted)}
   .about-list b{color:var(--steel-soft)}
   .check{width:22px;height:22px;flex:0 0 22px;border-radius:999px;display:grid;place-items:center;background:rgba(96,242,142,.13);color:var(--green);font-size:13px;font-weight:800}
+  .system-note{border:1px solid rgba(143,170,198,.22);border-radius:20px;background:rgba(255,255,255,.035);padding:18px;color:var(--steel-soft);font-weight:800;line-height:1.45}
+  .system-note small{display:block;margin-top:7px;color:var(--bone-muted);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
 
   .process{padding:34px 0 0}
   .proc-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
@@ -324,24 +329,27 @@
 </section>
 
 <div class="sec-head reveal">
-  <span class="eyebrow" data-i18n="about_eyebrow">Über György</span>
-  <h2 data-i18n="about_h">Coaching ist Kopfsache — und Konsequenz.</h2>
-  <p data-i18n="about_intro">György wirkt nicht wie ein anonymer Plan aus dem Internet. Er ist präsent, direkt und begleitet dich so, dass du wirklich dranbleibst.</p>
+  <span class="eyebrow" data-i18n="about_eyebrow">Györgys Weg</span>
+  <h2 data-i18n="about_h">Ich habe Veränderung selbst erlebt.</h2>
+  <p data-i18n="about_intro">Heute helfe ich dir, deinen Weg kürzer, klarer und stärker zu machen — mit einem System, das wirklich in dein Leben passt.</p>
 </div>
 <section class="about">
   <div class="wrap about-grid">
     <div class="quote-card reveal">
-      <p data-i18n-html="about_p1">Ich bin <strong>Rákosi György</strong>, Personal Trainer aus Leidenschaft. Mein Ansatz bringt Körper, Kopf und Konsequenz zusammen — damit aus guten Vorsätzen echte Veränderung wird.</p>
-      <p data-i18n="about_p2">Kein Schema F, keine leeren Versprechen. Wir setzen ein Ziel, bauen einen Plan, der zu deinem Leben passt, und bleiben dran — Woche für Woche.</p>
-      <p class="sig" data-i18n="about_sig">Body, Soul, Transformation — kein Spruch, sondern wie ich arbeite.</p>
+      <div class="story-kicker" data-i18n="story_kicker">Aus eigener Erfahrung</div>
+      <p class="story-lead" data-i18n-html="about_p1">Ich bin <strong>Rákosi György</strong>. Vor rund sechs Jahren habe ich entschieden, mein Leben konsequent zu verändern.</p>
+      <p data-i18n="about_p2">Damals begann mein Weg mit Training, Ernährung, Disziplin und persönlicher Weiterentwicklung. Schritt für Schritt habe ich neue Gewohnheiten aufgebaut und ein System entwickelt, das echte Veränderung möglich macht.</p>
+      <p data-i18n="about_p3">Heute gebe ich dieses Wissen weiter. Veränderung muss kein jahrelanger Kampf sein — mit klaren Routinen, ehrlicher Begleitung und dem richtigen Plan kommst du schneller und bewusster an dein Ziel.</p>
+      <p class="sig" data-i18n="about_sig">Veränderung ist kein schneller Zufall — sie ist ein System.</p>
     </div>
     <div class="about-card reveal">
       <img src="logo.webp" alt="RGYM" />
       <div class="about-list">
-        <div><span class="check">✓</span><span data-i18n-html="about_point_1"><b>Persönlich.</b> Ein fester Ansprechpartner statt anonymer Standardplan.</span></div>
-        <div><span class="check">✓</span><span data-i18n-html="about_point_2"><b>Datenbasiert.</b> Fortschritt, Ernährung und Training werden sichtbar.</span></div>
-        <div><span class="check">✓</span><span data-i18n-html="about_point_3"><b>Mehrsprachig.</b> Deutsch, Ungarisch und Italienisch.</span></div>
+        <div><span class="check">✓</span><span data-i18n-html="about_point_1"><b>Eigene Transformation.</b> György kennt den Weg nicht nur aus der Theorie, sondern aus eigener Erfahrung.</span></div>
+        <div><span class="check">✓</span><span data-i18n-html="about_point_2"><b>Klares System.</b> Training, Ernährung und Routinen werden einfach, messbar und alltagstauglich.</span></div>
+        <div><span class="check">✓</span><span data-i18n-html="about_point_3"><b>Dein Tempo.</b> Abnehmen, Muskelaufbau, Gesundheit oder Lebensstiländerung — dein Plan passt zu deinem Ziel.</span></div>
       </div>
+      <div class="system-note" data-i18n-html="system_note">Nicht härter kämpfen. Besser geführt werden.<small>Body · Soul · Transformation</small></div>
     </div>
   </div>
 </section>
@@ -462,13 +470,15 @@
       p1_lbl:"01 — Training", p1_h:"1:1 Personal Training", p1_p:"Echtes Coaching, auf dich abgestimmt — im Studio oder remote. Jede Einheit hat ein Ziel.",
       p2_lbl:"02 — Ernährung", p2_h:"Ernährung, die wirkt", p2_p:"Klare Pläne statt Verbote. Du loggst per Chat, dein Plan passt sich deinem Alltag an.",
       p3_lbl:"03 — Begleitung", p3_h:"Immer dabei", p3_p:"Bot und App begleiten dich täglich — in Deutsch, Ungarisch und Italienisch.",
-      about_eyebrow:"Über György", about_h:"Coaching ist Kopfsache — und Konsequenz.", about_intro:"György wirkt nicht wie ein anonymer Plan aus dem Internet. Er ist präsent, direkt und begleitet dich so, dass du wirklich dranbleibst.",
-      about_p1:'Ich bin <strong>Rákosi György</strong>, Personal Trainer aus Leidenschaft. Mein Ansatz bringt Körper, Kopf und Konsequenz zusammen — damit aus guten Vorsätzen echte Veränderung wird.',
-      about_p2:"Kein Schema F, keine leeren Versprechen. Wir setzen ein Ziel, bauen einen Plan, der zu deinem Leben passt, und bleiben dran — Woche für Woche.",
-      about_sig:"Body, Soul, Transformation — kein Spruch, sondern wie ich arbeite.",
-      about_point_1:'<b>Persönlich.</b> Ein fester Ansprechpartner statt anonymer Standardplan.',
-      about_point_2:'<b>Datenbasiert.</b> Fortschritt, Ernährung und Training werden sichtbar.',
-      about_point_3:'<b>Mehrsprachig.</b> Deutsch, Ungarisch und Italienisch.',
+      about_eyebrow:"Györgys Weg", about_h:"Ich habe Veränderung selbst erlebt.", about_intro:"Heute helfe ich dir, deinen Weg kürzer, klarer und stärker zu machen — mit einem System, das wirklich in dein Leben passt.", story_kicker:"Aus eigener Erfahrung",
+      about_p1:'Ich bin <strong>Rákosi György</strong>. Vor rund sechs Jahren habe ich entschieden, mein Leben konsequent zu verändern.',
+      about_p2:"Damals begann mein Weg mit Training, Ernährung, Disziplin und persönlicher Weiterentwicklung. Schritt für Schritt habe ich neue Gewohnheiten aufgebaut und ein System entwickelt, das echte Veränderung möglich macht.",
+      about_p3:"Heute gebe ich dieses Wissen weiter. Veränderung muss kein jahrelanger Kampf sein — mit klaren Routinen, ehrlicher Begleitung und dem richtigen Plan kommst du schneller und bewusster an dein Ziel.",
+      about_sig:"Veränderung ist kein schneller Zufall — sie ist ein System.",
+      about_point_1:'<b>Eigene Transformation.</b> György kennt den Weg nicht nur aus der Theorie, sondern aus eigener Erfahrung.',
+      about_point_2:'<b>Klares System.</b> Training, Ernährung und Routinen werden einfach, messbar und alltagstauglich.',
+      about_point_3:'<b>Dein Tempo.</b> Abnehmen, Muskelaufbau, Gesundheit oder Lebensstiländerung — dein Plan passt zu deinem Ziel.',
+      system_note:'Nicht härter kämpfen. Besser geführt werden.<small>Body · Soul · Transformation</small>',
       proc_eyebrow:"So läuft dein Coaching", proc_h:"Dein Coach — direkt im Chat.", proc_intro:"Einfach starten, sauber loggen, klar sehen, was als Nächstes kommt.",
       s1_h:"Schreib dem Bot", s1_p:"Erzähl, was du isst und trainierst — per Telegram, ganz nebenbei.",
       s2_h:"Bekomm deinen Plan", s2_p:"Training und Ernährung, abgestimmt auf dein Ziel — in deiner Sprache.",
@@ -488,7 +498,7 @@
       nav_cta:"Indítsd el", hero_badge:"Meran · Online · App coaching", hero_eyebrow:"Személyi edző · Meran", hero_title:'Edzés <span class="chrome-text">valódi energiával.</span>', hero_sub:"Edzés és táplálkozás, ami az életedhez igazodik — egy edzővel, aki nap mint nap melletted van. Teremben, online és közvetlenül a telefonodon.", hero_cta1:"Indítsd el", hero_cta2:"Így működik",
       trust_1_h:"1:1", trust_1_p:"személyes coaching", trust_2_h:"DE · HU · IT", trust_2_p:"a saját nyelveden", trust_3_h:"App + Bot", trust_3_p:"napi támogatás", chip_top:"Coach energia", chip_bottom:'No excuses<small>csak fejlődés</small>',
       p1_lbl:"01 — Edzés", p1_h:"1:1 személyi edzés", p1_p:"Valódi coaching, rád szabva — teremben vagy online. Minden edzésnek célja van.", p2_lbl:"02 — Táplálkozás", p2_h:"Táplálkozás, ami működik", p2_p:"Világos tervek tiltások helyett. Chaten naplózol, a terved a mindennapjaidhoz igazodik.", p3_lbl:"03 — Támogatás", p3_h:"Mindig veled", p3_p:"A bot és az app nap mint nap végigkísér — németül, magyarul és olaszul.",
-      about_eyebrow:"Györgyről", about_h:"A coaching fejben dől el — és kitartásban.", about_intro:"György nem egy névtelen internetes terv. Jelen van, közvetlen, és úgy kísér, hogy tényleg kitarts.", about_p1:'<strong>Rákosi György</strong> vagyok, szenvedélyes személyi edző. A módszerem testet, fejet és kitartást köt össze — hogy a jó szándékból valódi változás legyen.', about_p2:"Semmi sablon, semmi üres ígéret. Kitűzünk egy célt, építünk egy tervet, ami az életedhez illik, és kitartunk mellette — hétről hétre.", about_sig:"Body, Soul, Transformation — nem szlogen, hanem ahogyan dolgozom.", about_point_1:'<b>Személyes.</b> Egy állandó kapcsolattartó névtelen sablonterv helyett.', about_point_2:'<b>Adatalapú.</b> A fejlődésed, az étkezésed és az edzésed látható.', about_point_3:'<b>Többnyelvű.</b> Németül, magyarul és olaszul.',
+      about_eyebrow:"György útja", about_h:"Én magam is végigmentem a változáson.", about_intro:"Ma abban segítek, hogy az utad rövidebb, tisztább és erősebb legyen — egy rendszerrel, ami valóban illik az életedhez.", story_kicker:"Saját tapasztalatból", about_p1:'<strong>Rákosi György</strong> vagyok. Körülbelül hat évvel ezelőtt úgy döntöttem, hogy következetesen megváltoztatom az életemet.', about_p2:"Ekkor kezdődött az utam az edzéssel, a táplálkozással, a fegyelemmel és az önfejlesztéssel. Lépésről lépésre új szokásokat építettem, és kialakítottam egy rendszert, ami valódi változást hozott.", about_p3:"Ma ezt a tudást adom tovább. A változásnak nem kell évekig tartó küzdelemnek lennie — tiszta rutinokkal, őszinte támogatással és jó tervvel gyorsabban és tudatosabban érheted el a célodat.", about_sig:"A változás nem gyors csoda — hanem egy jól működő rendszer.", about_point_1:'<b>Saját átalakulás.</b> György nem csak elméletből ismeri az utat, hanem saját tapasztalatból.', about_point_2:'<b>Tiszta rendszer.</b> Az edzés, a táplálkozás és a rutinok egyszerűek, mérhetőek és beilleszthetők a mindennapokba.', about_point_3:'<b>A te tempód.</b> Fogyás, izomépítés, egészség vagy életmódváltás — a terv a te célodhoz igazodik.', system_note:'Ne keményebben küzdj. Kapj jobb vezetést.<small>Body · Soul · Transformation</small>',
       proc_eyebrow:"Így zajlik a coaching", proc_h:"Az edződ — egyenesen a chatben.", proc_intro:"Egyszerű kezdés, tiszta naplózás, világos következő lépések.", s1_h:"Írj a botnak", s1_p:"Mondd el, mit eszel és edzel — Telegramon, csak úgy mellékesen.", s2_h:"Megkapod a terved", s2_p:"Edzés és táplálkozás a célodhoz igazítva — a saját nyelveden.", s3_h:"Lásd a fejlődésed", s3_p:"Minden egy helyen, az appodban: tervek, naplók és a fejlődésed.", chat_status:"● online", chat_m1:"Reggeli: 3 tojás, 60g zabpehely, banán", chat_m2:'Szuper! Elmentve. <span class="mac">~480 kcal · 32g fehérje · még ~1.320 kcal ma</span>', chat_m3:"Mi a mai terv?", chat_m4:"Push nap 💪 4 gyakorlat, 45 perc. Hajrá!", chat_link:"📲 Terv megnyitása az appban",
       faq_eyebrow:"Gyakori kérdések", faq_h:"Jó tudni.", faq_q1:"Kinek szól a coaching?", faq_a1:"Mindenkinek, aki komolyan változtatni akar — legyen kezdő, visszatérő vagy már tapasztalt. Az edzést és a táplálkozást a szintedhez és a célodhoz igazítjuk.", faq_q2:"Helyben Meranban vagy online?", faq_a2:"Mindkettő. Edzhetsz személyesen Meranban, vagy teljesen online is kísérünk — a tervek, a check-inek és a módosítások amúgy is az appon és Telegramon mennek.", faq_q3:"Hogyan indul az egész?", faq_a3:"Írsz Telegramon, tisztázzuk a célodat és a napirendedet, majd megkapod az első terved. Onnantól hétről hétre kísérünk.", faq_q4:"Kell előzetes tapasztalat vagy konditerem?", faq_a4:"Nem. Onnan indulunk, ahol tartasz — az otthoni gyakorlatok és egy sima konditerem is működik.", faq_q5:"Milyen nyelveken zajlik?", faq_a5:"Németül, olaszul és magyarul — a terv, az app és a bot a nyelvedhez igazodik.",
       cta_h:"Készen állsz a változásra?", cta_p:"Írj Györgynek Telegramon vagy e-mailben. Megtaláljátok a hozzád illő tervet.", cta_b1:"Telegram megnyitása", cta_b2:"Írj e-mailt", foot_role:"Személyi edző", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
@@ -498,7 +508,7 @@
       nav_cta:"Inizia ora", hero_badge:"Merano · Online · App coaching", hero_eyebrow:"Personal Trainer · Merano", hero_title:'Allenati con <span class="chrome-text">energia vera.</span>', hero_sub:"Allenamento e nutrizione su misura per la tua vita — con un coach che ti segue ogni giorno. In presenza, online e direttamente sul tuo telefono.", hero_cta1:"Inizia ora", hero_cta2:"Come funziona",
       trust_1_h:"1:1", trust_1_p:"coaching personale", trust_2_h:"DE · HU · IT", trust_2_p:"nella tua lingua", trust_3_h:"App + Bot", trust_3_p:"supporto quotidiano", chip_top:"Coach Energy", chip_bottom:'No excuses<small>solo progresso</small>',
       p1_lbl:"01 — Allenamento", p1_h:"Personal training 1:1", p1_p:"Coaching vero, su misura per te — in studio o da remoto. Ogni sessione ha un obiettivo.", p2_lbl:"02 — Nutrizione", p2_h:"Nutrizione che funziona", p2_p:"Piani chiari, niente divieti. Registri in chat e il piano si adatta alla tua giornata.", p3_lbl:"03 — Supporto", p3_h:"Sempre con te", p3_p:"Bot e app ti accompagnano ogni giorno — in tedesco, ungherese e italiano.",
-      about_eyebrow:"Chi è György", about_h:"Il coaching è testa — e costanza.", about_intro:"György non sembra un piano anonimo trovato online. È presente, diretto e ti accompagna per farti restare costante.", about_p1:'Sono <strong>Rákosi György</strong>, personal trainer per passione. Il mio metodo unisce corpo, testa e costanza — perché dai buoni propositi nasca un vero cambiamento.', about_p2:"Niente schemi preconfezionati, niente promesse vuote. Fissiamo un obiettivo, costruiamo un piano adatto alla tua vita e restiamo costanti — settimana dopo settimana.", about_sig:"Body, Soul, Transformation — non uno slogan, ma il mio modo di lavorare.", about_point_1:'<b>Personale.</b> Un referente fisso invece di un piano standard anonimo.', about_point_2:'<b>Basato sui dati.</b> Progressi, nutrizione e allenamento diventano visibili.', about_point_3:'<b>Multilingue.</b> Tedesco, ungherese e italiano.',
+      about_eyebrow:"Il percorso di György", about_h:"Ho vissuto il cambiamento in prima persona.", about_intro:"Oggi ti aiuto a rendere il tuo percorso più breve, più chiaro e più forte — con un sistema che si adatta davvero alla tua vita.", story_kicker:"Esperienza reale", about_p1:'Sono <strong>Rákosi György</strong>. Circa sei anni fa ho deciso di cambiare la mia vita con costanza e serietà.', about_p2:"Da lì è iniziato il mio percorso con allenamento, alimentazione, disciplina e crescita personale. Passo dopo passo ho costruito nuove abitudini e creato un sistema che rende possibile un cambiamento reale.", about_p3:"Oggi trasmetto questa esperienza agli altri. Il cambiamento non deve essere una lotta di anni — con routine chiare, supporto sincero e il piano giusto puoi raggiungere il tuo obiettivo in modo più veloce e consapevole.", about_sig:"Il cambiamento non è un miracolo veloce — è un sistema che funziona.", about_point_1:'<b>Trasformazione personale.</b> György conosce il percorso non solo dalla teoria, ma dalla propria esperienza.', about_point_2:'<b>Sistema chiaro.</b> Allenamento, nutrizione e routine diventano semplici, misurabili e adatti alla vita quotidiana.', about_point_3:'<b>Il tuo ritmo.</b> Dimagrimento, massa muscolare, salute o cambio di stile di vita — il piano segue il tuo obiettivo.', system_note:'Non lottare più forte. Fatti guidare meglio.<small>Body · Soul · Transformation</small>',
       proc_eyebrow:"Come funziona il coaching", proc_h:"Il tuo coach — direttamente in chat.", proc_intro:"Inizio semplice, registrazione chiara e prossimi passi sempre visibili.", s1_h:"Scrivi al bot", s1_p:"Racconta cosa mangi e come ti alleni — su Telegram, senza pensieri.", s2_h:"Ricevi il tuo piano", s2_p:"Allenamento e nutrizione su misura per il tuo obiettivo — nella tua lingua.", s3_h:"Vedi i tuoi progressi", s3_p:"Tutto in un posto, nella tua app: piani, log e i tuoi progressi.", chat_status:"● online", chat_m1:"Colazione: 3 uova, 60g avena, banana", chat_m2:'Ottimo! Registrato. <span class="mac">~480 kcal · 32g proteine · ancora ~1.320 kcal oggi</span>', chat_m3:"Piano per oggi?", chat_m4:"Push day 💪 4 esercizi, 45 min. Si parte!", chat_link:"📲 Apri il piano nell'app",
       faq_eyebrow:"Domande frequenti", faq_h:"Buono a sapersi.", faq_q1:"A chi è rivolto il coaching?", faq_a1:"A chiunque voglia cambiare sul serio — che tu sia all'inizio, di ritorno o già esperto. Allenamento e nutrizione vengono adattati al tuo livello e al tuo obiettivo.", faq_q2:"In presenza a Merano o online?", faq_a2:"Entrambi. Puoi allenarti di persona a Merano o essere seguito completamente online — piani, check-in e adattamenti passano comunque da app e Telegram.", faq_q3:"Come si inizia?", faq_a3:"Scrivi su Telegram, definiamo il tuo obiettivo e le tue giornate, poi ricevi il primo piano. Da lì ti seguiamo settimana dopo settimana.", faq_q4:"Servono esperienza o una palestra?", faq_a4:"No. Partiamo da dove sei — funzionano sia gli esercizi a casa sia una normale palestra.", faq_q5:"In che lingue si svolge?", faq_a5:"Tedesco, italiano e ungherese — piano, app e bot si adattano alla tua lingua.",
       cta_h:"Pronto per la tua trasformazione?", cta_p:"Scrivi a György su Telegram o via email. Troverete il piano giusto per te.", cta_b1:"Apri Telegram", cta_b2:"Scrivi un'email", foot_role:"Personal Trainer", foot_app:"App", legal:"© 2026 RGYM · Rákosi György — Body, Soul, Transformation"
